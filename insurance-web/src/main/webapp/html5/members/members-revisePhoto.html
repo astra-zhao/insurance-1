@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>我的资料</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/mobiscroll.2.13.2.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery.form.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/mobiscroll.2.13.2.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/regCheck.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/members-revisePhoto.js"></script>
+<style type="text/css">
+ #jobNameSelect_dummy,#jobNameLevel2_dummy,#jobId_dummy,
+ #province_dummy,#city_dummy,#county_dummy{
+    display:inline-block;
+    margin-left: .2rem;
+    padding-left: .1rem;
+ }
+ #jobNameSelect_dummy{
+    width:3.7rem;
+    overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+ }
+</style>    
+<script type="text/javascript">
+   userLoginState()
+</script>
+</head>
+<body>
+<div class="wrap addCard revisePhoto">
+    <div class="header">
+        <div class="left back"></div>
+        <h2>我的资料</h2>
+    </div>
+    <div class="revisePhoto-contener">
+        <div class="revisePhoto-contener-inner">
+            <ul style="padding-top:.25rem;" style="display:none;">
+      <li class="li-photo">
+         <form id="revisePhoto" enctype="multipart/form-data" method="post">
+           <input type="file" accept="image/*" name="image_input" id="image_input" onfocus="this.blur()"/>
+           <input type="hidden"  id="picUrl" name="picUrl"  value="imgPhoto"/> 
+          </form>
+          <span>头像</span>
+          <img src="" class="img-photo" src=""/>
+          <i class="icon-right"></i>
+      </li>
+      <form enctype="multipart/form-data" id="reviseNickname">
+       <li>
+            <span>昵称</span>
+            <input type="hidden"  name="image_input" id="image_input" value=""/> 
+            <input type="text"  style="width:70%" id="nickName" name="nickName" value="" class="input-revisePhoto" placeholder="用户昵称"/>
+       </li>
+       <li>
+          <span>性别</span>
+          <input type="radio" name="sex"  value="0" class="input-radio" style="margin-left:.2rem"/>&nbsp;女
+          <input type="radio" name="sex"  value="1" class="input-radio" style="margin-left:.2rem"/>&nbsp;男
+       </li>
+       <li>
+          <span>出生日期</span>
+          <input type="text" name="birthdate" id="birthdate" class="input-revisePhoto" placeholder="出生日期"/>
+       </li>
+       <li>
+          <span>手机号</span>
+          <input type="text" name="mobileNumber" id="mobileNumber" class="input-revisePhoto" placeholder="手机号码"/>
+       </li>
+       <li>
+          <span>电子邮箱</span>
+          <input type="text" name="email" id="email" class="input-revisePhoto" placeholder="电子邮箱"/>
+       </li>
+       <li>
+          <span>职业</span>
+          <select id="jobNameSelect"></select>
+       </li>
+       <li id="job-li01" style="display:none">
+          <span></span>
+          <select id="jobNameLevel2" ></select>
+       </li>
+       <li id="job-li02" style="display:none">
+          <span></span>
+          <select id="jobId" name="jobId"></select>
+       </li>
+       <li>
+          <span>收入</span>
+          <input type="text" name="income" id="income" class="input-revisePhoto" placeholder="当前收入"/>
+       </li>
+       <li>
+          <span>通讯地址</span>
+          <select id="province" name="province"></select>
+       </li>
+       <li id="cityLi" style="display:none">
+          <span></span>
+          <select id="city" name="city"></select>
+       </li>
+       <li id="countyLi" style="display:none">
+          <span></span> 
+          <select id="county" name="county"></select>
+       </li>
+       <li style="height:auto;line-height:1.5em">
+          <span style="float:left;margin-top:.09rem">具体地址</span>
+          <textarea name="address" id="address" placeholder="详细地址" style="margin-left:.3rem;width:4rem;height:1rem;box-sizing:border-box;padding:.1rem;border:0"></textarea>
+       </li>
+    </form>
+  </ul>
+            <div class="btn-box">
+               <button type="submit" class="block btn">确认修改</button>
+            </div>
+          </div>  
+    </div>
+</div>
+
+<div class="preview-photo">
+   <div class="big-photo">
+	  <img src="" />
+	</div>
+	<div class="clearfix btns-bigphoto">
+	  <span class="left cancel">取消</span>
+	  <span class="right select">选取</span>
+	</div>
+</div>
+
+<div class="bgDialog"></div>
+<div class="bgPop"></div>
+<div class="pop">
+    <strong>提示</strong>
+    <div></div>
+    <div>
+        <span class="default">确定</span>
+    </div>
+</div>
+<div id="loading" class="clearfix">
+  <img src="/static/images/loading.gif" class="left"/>
+  <p class="left" style="padding-left:.1rem">图片正在上传...</p>
+</div>
+
+</body>
+</html>

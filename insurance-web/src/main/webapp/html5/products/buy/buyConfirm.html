@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>产品购买</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/mobiscroll.2.13.2.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/mobiscroll.2.13.2.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/regCheck.js"></script>
+<script type="text/javascript">
+getPageInfo()
+function getPageInfo(){
+	var str=GetQueryString("proId");
+	if(str != "" && str != null){
+		$.ajax({
+			url:commonUrl+"/product/buyById?id="+str+"&_="+new Date().getTime(),
+	        type:"post",
+	        async:true,
+	        dataType:"json",
+	        success:function(data){
+	        	if(data.code==200){
+	        		$("style").append(data.obj.buyCss);
+	        		$("script#js").before(data.obj.buyInfo1);
+	        		$("script#js").append(data.obj.buyJs);
+	        	}
+	        },
+	        error:function(data){
+	        	showPop('<p style="text-align: center;padding:.2rem 0">'+data.msg+'</p>')
+	        }
+		})
+	}
+}	
+</script>
+<style type="text/css"></style>	
+</head>
+<body>
+<script charset="utf-8" type="text/javascript" id="js"></script>
+</body>
+</html>

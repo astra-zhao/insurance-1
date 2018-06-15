@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="aggressiveLazyLoading" value="true" />
+		<setting name="logImpl" value="LOG4J2" />
+	</settings>
+
+	<!-- 进行mybatis 配置 -->
+	<typeAliases>
+		<!-- 为类型 起了别名 -->
+		<typeAlias type="com.mrbt.insurance.admin.commons.utils.PageInfo" alias="PageInfo" />
+		
+		<typeAlias type="com.mrbt.insurance.web.model.BaseBankInfo" alias="BaseBankInfo" />
+		<typeAlias type="com.mrbt.insurance.web.model.BaseBankSixnumber" alias="BaseBankSixnumber" />
+		<typeAlias type="com.mrbt.insurance.web.model.BaseCompanyInfo" alias="BaseCompanyInfo" />
+		<typeAlias type="com.mrbt.insurance.web.model.BaseCompanyType" alias="BaseCompanyType" />
+		<typeAlias type="com.mrbt.insurance.web.model.Employee" alias="Employee" />
+		<typeAlias type="com.mrbt.insurance.web.model.EmployeeCommissionChanges" alias="EmployeeCommissionChanges" />
+		<typeAlias type="com.mrbt.insurance.web.model.EmployeeInfo" alias="EmployeeInfo" />
+		<typeAlias type="com.mrbt.insurance.web.model.EmployeeOrderInfo" alias="EmployeeOrderInfo" />
+		<typeAlias type="com.mrbt.insurance.web.model.OrdersInfo" alias="OrdersInfo" />
+		<typeAlias type="com.mrbt.insurance.web.model.ProductInfo" alias="ProductInfo" />
+		<typeAlias type="com.mrbt.insurance.web.model.UserApplicantInfo" alias="UserApplicantInfo" />
+		<typeAlias type="com.mrbt.insurance.web.model.UserIntegeralLog" alias="UserIntegeralLog" />
+		<typeAlias type="com.mrbt.insurance.web.model.Users" alias="Users" />
+		<typeAlias type="com.mrbt.insurance.web.model.UsersBank" alias="UsersBank" />
+		<typeAlias type="com.mrbt.insurance.web.model.UsersCertInfo" alias="UsersCertInfo" />
+		<typeAlias type="com.mrbt.insurance.web.model.WebBannerManager" alias="WebBannerManager" />
+		<typeAlias type="com.mrbt.insurance.web.model.WebFunctionButton" alias="WebFunctionButton" />
+		<typeAlias type="com.mrbt.insurance.web.model.WebSceneClassification" alias="WebSceneClassification" />
+	</typeAliases>
+
+</configuration> 

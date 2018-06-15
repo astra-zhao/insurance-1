@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>查询</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/regCheck.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/dropload.min.js"></script>
+<style type="text/css">
+.inquiry-box{
+   /*display:none;*/
+   margin:0 auto;
+   margin-top:.5rem;
+   margin-bottom:.2rem;
+   padding-top:.5rem;
+   width:5.8rem;
+   border-top:1px dashed #d2d2d2;
+ }
+.inquiry-box .inquiry{
+  position:relative;
+  z-index:1;
+  padding:.37rem .4rem .5rem;
+  min-height:4.5rem;
+  background:#fff;
+  box-sizing:border-box;
+}
+.guanwang{
+  position:relative;
+  z-index:1;
+  width:4.8rem;
+  padding:.3rem .2rem;
+  border:1px dashed #ffb400;
+  border-radius:.1rem;
+  box-sizing:border-box;
+}
+.guanwang p{
+  margin-bottom:.1rem;
+  font-size:.16rem;
+  color:#000;
+}
+.guanwang p span{color:#0099cb}
+.icon-searchInquiry{
+  position:absolute;
+  z-index:2;
+  right:.2rem;
+  top:.2rem;
+  width:1.19rem;
+  height:1.19rem;
+  background-position:-2.92rem -1.18rem;
+}
+.icon-lamp{
+  position:absolute;
+  z-index:2;
+  left:-.15rem;
+  bottom:2rem;
+  width:.27rem;
+  height:.39rem;
+  background-position:-3.47rem -.58rem;
+}
+.inquiryItems{
+   margin-bottom:.3rem;
+   min-height: 1rem;
+}
+.inquiryItems p{
+   font-size:.18rem;
+   height:auto;
+   line-height:auto
+}
+.inquiryItems ul li{
+	margin: 0;
+	height:.4rem;
+	line-height:.4rem
+}
+.inquiryItems ul li span{
+	margin: 0;
+	height:.4rem;
+	line-height:.4rem
+}
+.orderInfoUl{
+	border-bottom: 1px dashed #ff6600;
+	padding-bottom:.1rem;
+    margin-bottom: .3rem;
+}
+.orderInfoUl .right{
+	text-align-last : left;
+	width:3.5rem;
+}
+.dropload-refresh,.dropload-noData,.dropload-load{
+      text-align: center;
+      padding:.1rem 0;
+}
+</style>    
+
+
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <div class="left back"></div>
+        <h2>查询</h2>
+    </div>
+    <div class="addCard-contener revisePass-contener">
+        <ul style="padding-top:.25rem;">
+           <li>
+               <i class="icon icon-revise-tel left" style="margin-top:.2rem"></i>
+               <input type="text"  id="userPhone" value="" placeholder="请输入手机号"/>
+           </li>
+           <li class="li-getcode">
+               <div class="left">
+                   <i class="icon icon-revise-code left"></i>
+                   <input type="text" placeholder="请输入验证码" style="width:2.5rem" id="rePassValidCode"/>
+               </div>
+               <a href="javascript:void(0)" class="right getRegistCode">获取验证码</a>
+           </li>
+        </ul>
+        <button type="button" class="block btn btn-gray">查询</button>
+        
+        <div class="inquiry-box">
+           <div class="inquiry">
+              <div class="inquiryItems">
+                <!-- <p style="color:#0099cb">您的订单信息：</p>
+                <ul class="orderInfoUl">
+                	<li>
+                		<span class="left">创建时间：</span>
+                		<span class="right">2016-07-14 12:00:00</span>
+                	</li>
+                	<li>
+                		<span class="left">订单金额：</span>
+                		<span class="right">300.00</span>
+                	</li>
+                	<li class="clearfix" style="height:auto;line-height:1.5em">
+                		<span class="left">保单号：</span>
+                		<p class="right">保单生成中，保单生成后会发送短信至被保险人手机，如需了解保单信息，请致电中国人寿财险产品经理胡先生：0755-22922653</p>
+                	</li>
+                </ul>
+                <ul class="orderInfoUl">
+                	<li>
+                		<span class="left">创建时间：</span>
+                		<span class="right">2016-07-14 12:00:00</span>
+                	</li>
+                	<li>
+                		<span class="left">订单金额：</span>
+                		<span class="right">300.00</span>
+                	</li>
+                	<li>
+                		<span class="left">保单号：</span>
+                		<span class="right">Ea215487965215464857</span>
+                	</li>
+                </ul> -->
+                
+              </div>
+              <i class="icon icon-searchInquiry"></i>
+              <div class="guanwang">
+                 <p>在“中国人寿财产保险股份有限公司”网站用保单号进行查询。<p>
+                 <p><span>http://claim.chinalife-p.com.cn/claimCarFlow/index.jsp</span></p>
+                 <p>或拨打客户服务专线：<span>95519</span></p>
+                 <i class="icon icon-lamp"></i>
+              </div>
+           </div>
+        </div>
+        
+    </div>
+<div class="bgDialog"></div>
+<div class="dialog orderConfirm" style="height:3.01rem;margin-top:-1.5rem">
+     <div class="head clearfix">
+        <p>提示</p>
+     </div>
+    <p style="padding:.1rem 0 .3rem;width:3.5rem;text-align: center;font-size:14px;color:#ea5513">
+       <img src="/static/images/inquiry-fail.gif" style="display:block;margin:.2rem auto;width:.66rem;">
+                      抱歉！您未在本年度购买新单！
+    </p>
+    <div class="btns">
+        <span class="left">暂不购买</span>
+        <span class="left">马上购买</span>
+    </div>
+</div> 
+<div class="bgPop"></div>
+<div class="pop" >
+    <strong>提示</strong>
+    <div></div>
+    <div>
+       <span class="default">确定</span>
+    </div>
+</div>
+
+</div>
+
+<div id="bottom"></div>
+
+
+
+<script>
+var isLoad=true;//标志位 判断是否还需加载
+var clickCount=0;//btn单击次数
+var dropload=null;
+$(function(){
+   back();
+   setHeight();
+   function setHeight(){
+	   var height=$(window).height()-$(".header").outerHeight(true);
+	   if($(".addCard-contener").height()>height){
+		   $(".addCard-contener").css({
+			   "height":height,
+			   "overflow":"auto"
+		   })
+	   }
+   }
+   
+   //reg
+   $("#userPhone").on("blur",function(){
+	   regPhone("#userPhone");
+   })
+   $(".getRegistCode").on("click",function(){
+	   if($(this).hasClass("click")){
+		   return
+	   }else{ 
+		   var phone=$("#userPhone").val();
+   		  $.ajax({
+               url:commonUrl+"/user/getValidateCode",
+               type:"post",
+               dataType:"json",
+               data:{
+                   key:phone  //待改 手机号不能修改打星的
+               },
+               success:function(data){
+                   if(data.code!==200){
+                       showPop('<p style="text-align: center;padding:.2rem 0">'+data.msg+'</p>');
+                   }else if(data.code==200){
+                       setTime(".getRegistCode");
+                       $("#rePassValidCode").on("keyup",function(){
+                    	   if($("#rePassValidCode").val().length==6){
+                    		   $("button.block").removeClass("btn-gray");
+                    	   }else{
+                    		   $("button.block").addClass("btn-gray");
+                    	   }
+                       })
+                   }
+               },
+               error:function(data){
+                   showPop('<p style="text-align: center;padding:.2rem 0">'+data.msg+'</p>');
+                   return false
+               }
+           }) 
+	   }
+   })
+   
+   
+	$("button.block").on("click",function(){
+		if($(this).hasClass("btn-gray")){
+			return
+		}else{
+		  if(clickCount>0){
+			  dropload.unlock();
+		  }	
+		  var page=1,rows=3;
+		  clickCount++;
+		  $(".dropload-down").remove();
+		  var phone=$("#userPhone").val();
+		  var vailCode=$("#rePassValidCode").val();
+		  $(this).addClass("btn-gray");
+		  $.ajax({
+	             url:commonUrl+"/orders/getOrderPolicyNoByMobile",
+	             type:"POST",
+			     async:false,
+	             dataType:"jsonp",
+	             data:{
+		           	  mobileNumber:phone,
+		           	  vailCode:vailCode,
+		           	  page:page,
+		           	  rows:rows
+	             },
+	             success:function(data){
+	                 if(data.code==200){
+	                	 var content='<p style="color:#0099cb">您的订单信息：</p>';
+	                	 var contentObj=data.rows;
+	                	 for(var i=0;i<contentObj.length;i++){
+	                		 content+='<ul class="orderInfoUl">'+
+			                      	    '<li>'+
+					                 		'<span class="left">时间：</span>'+
+					                 		'<span class="right">'+contentObj[i].createTime+'</span>'+
+					                 	'</li>'+
+					                 	'<li>'+
+					                 		'<span class="left">金额:</span>'+
+					                 		'<span class="right">'+contentObj[i].paymentAmount+'</span>'+
+					                 	'</li>';
+					                		 if(contentObj[i].policyNo!=null){
+					                			 content+='<li>'+
+							                 		        '<span class="left">保单号：</span><span class="right">'+contentObj[i].policyNo+'</span>';
+					                		 }else{
+					                			 content+='<li  class="clearfix" style="height:auto;line-height:1.5em">'+
+					                 		        '<span class="left">信息：</span><p class="right">您的保单号还未生成，请致电10086</p>';
+					                		 }
+			                content+= '</li>'+
+			                         '</ul>';
+	                	 }
+	                	 $(".inquiryItems").html(content).show();
+	                	 setHeight();
+	                	 dropload=$('.addCard-contener').dropload({
+	                			domDown : {
+	                	            domClass   : 'dropload-down',
+	                	            domRefresh : '<div class="dropload-refresh">刷新</div>',
+	                	            domNoData  : '<div class="dropload-noData">无数据</div>',
+	                	            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中</div>'
+	                	        },
+	                		    loadDownFn : function(me){
+	                		    	page++;
+	                		    	var phone=$("#userPhone").val();
+	                				var vailCode=$("#rePassValidCode").val();
+	                		    	$.ajax({
+	                		    		url:commonUrl+"/orders/getOrderPolicyNoByMobile",
+	                		             type:"post",
+	                		             dataType:"json",
+	                		             data:{
+	                			           	  mobileNumber:phone,
+	                			           	  vailCode:vailCode,
+	                			           	  page:page,
+	                			           	  rows:rows
+	                		             },
+	                					success:function(data){
+	                						if(data.code==200){
+	                							 var contentObj=data.rows;
+	                							 var content="";
+	                							 if(contentObj.length>0){
+	                		                	   for(var j=0;j<contentObj.length;j++){
+	                		                		   content+='<ul class="orderInfoUl">'+
+	                				                      	    '<li>'+
+	                						                 		'<span class="left">时间：</span>'+
+	                						                 		'<span class="right">'+contentObj[j].createTime+'</span>'+
+	                						                 	'</li>'+
+	                						                 	'<li>'+
+	                						                 		'<span class="left">金额:</span>'+
+	                						                 		'<span class="right">'+contentObj[j].paymentAmount+'</span>'+
+	                						                 	'</li>';
+	                						                		 if(contentObj[j].policyNo!=null){
+	                						                			 content+='<li>'+
+	                								                 		        '<span class="left">保单号：</span><span class="right">'+contentObj[j].policyNo+'</span>';
+	                						                		 }else{
+	                						                			 content+='<li  class="clearfix" style="height:auto;line-height:1.5em">'+
+	                						                 		        '<span class="left">信息：</span><p class="right">您的保单号还未生成，请致电10086</p>';
+	                						                		 }
+	                				                  content+= '</li>'+
+	                				                         '</ul>';
+	                				                       
+	                		                	     }
+	                		                	     $(".inquiryItems").append(content);
+	                			                	 setHeight();
+		                		                	  if(rows*page>=data.total.length){
+		           				                    	    me.lock();
+		               					    				me.noData();
+	           				                            } 
+	                								 me.resetload();
+	                								}
+	                							}else{
+	                								me.lock();
+	                								me.noData();
+	                			    				me.resetload();
+	                							}
+	                			    		},
+	                			    		error:function(data){
+												alert(data.msg);
+	                			    			me.resetload();
+	                			    		}
+	                		    	})
+	                		    	
+	                		    }
+	                		});
+	                	 
+	                 }else if(data.code==1003){
+						 alert("您还没有购买过此产品")
+	                 }else{
+	                	 alert(data.msg);
+	                 }
+	             },
+	             error:function(data){
+					 alert(data.msg);
+	                 return false
+	             }
+	         }) 
+		}
+	})
+})	
+</script>
+
+<script type="text/javascript">
+
+		// 监控window滚动条滚动
+		$(window).scroll(function (e){
+			var scrollTop = $(window).scrollTop();	// 滚动条超出屏幕的高度
+			var docHeight = $(document).height();	// 文档高度（我没用到）
+			var winHeight = window.innerHeight;		// 浏览器可视范围高度
+			var bottomTop = $('#bottom').offset().top;	// bottom 在文档内部的高度（bottom的位置）
+			//console.log(scrollTop, winHeight, scrollTop+winHeight, bottomTop);
+			// 如果 bottom所在的位置 没有在屏幕最上面（大于scrollTop滚动条超出屏幕的高度） 并且没有在屏幕最下面（bottomTop-scrollTop 小于 winHeight) 说明在屏幕内显示
+			// 但是这里只判断是否从屏幕下方走出来
+			if(Number(bottomTop)-Number(scrollTop) <= Number(winHeight)){
+				// 已经进入到屏幕内了
+				console.log('show');
+				var phone=$("#userPhone").val();
+				var vailCode=$("#rePassValidCode").val();
+				// TODO ajax获取更多内容
+				if(flag){
+					page++;
+					queryData(phone,vailCode,page,rows);
+				}
+				
+			}
+		});
+
+
+		
+	</script>
+    
+</body>
+</html>

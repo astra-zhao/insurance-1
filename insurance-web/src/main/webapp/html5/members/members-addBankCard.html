@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>添加银行卡</title>
+    <link rel="stylesheet" href="/static/css/mobiscroll.2.13.2.css"/>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/mobiscroll.2.13.2.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+</head>
+<body>
+<div class="wrap addCard">
+    <div class="header">
+        <div class="left back"></div>
+        <h2>添加银行卡</h2>
+    </div>
+    <div class="addCard-contener">
+      <form id="addCardForm" method="post">
+        <ul style="padding-top:.25rem;">
+           <li>
+               <span>银行卡号</span>
+               <input type="text" placeholder="请输入银行卡号" name="bankNumber" id="bankNumber"/>
+           </li>
+           <li class="right-position">
+               <span>所属银行</span>
+               <select name="bId" id="bId" style="border:0;background:none">
+                  <option value='请选择所属银行' disabled selected>请选择所属银行</option>
+               </select>
+			   <input type="hidden"  name="bankShortName" id="bankShortName" value=""/>
+			   <i class="icon-down icon-down-addbank"></i>
+           </li>
+           <li>
+               <span>姓名</span>
+               <input type="text" placeholder="请输入银行卡预留姓名" name="userName" id="userName"/>
+           </li>
+           <li>
+               <span>身份证号</span>
+               <input type="text" placeholder="请输入身份证号" id="idCard" name="idCard"/>
+           </li>
+           <li>
+               <span>手机号码</span>
+               <input type="text" placeholder="请输入银行预留手机号" id="userPhone" name="userPhone"/>
+           </li>
+           <li class="li-getcode">
+               <div class="left">
+                   <span>验证码</span>
+                   <input type="text" placeholder="请输入验证码" id="vailCode" name="vailCode"/>
+                   <input type="hidden" id="platformType" name="platformType"/>
+               </div>
+
+               <a href="javascript:void(0)" class="right getRegistCode">获取验证码</a>
+           </li>
+         </ul>
+         <button type="button" class="block btn">确认添加</button>
+         <p style="padding-top:.2rem;text-align: center;font-size:.14rem;">*请认真核对您的信息</p>
+       </form>
+    </div>
+
+    <img src="/static/images/need.png" class="img-need"/>
+
+<div class="bgPop"></div>
+<div class="pop" >
+    <strong>提示</strong>
+    <div></div>
+    <div>
+       <span class="default">确定</span>
+    </div>
+</div>
+</div>
+
+<script charset="utf-8" type="text/javascript" src="/static/js/jquery.form.js"></script>
+<script type="text/javascript" src="/static/js/regCheck.js"></script>
+<script type="text/javascript" src="/static/js/addBankCard.js"></script>
+</body>
+</html>

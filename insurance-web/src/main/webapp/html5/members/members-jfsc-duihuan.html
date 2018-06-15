@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>京东卡</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+<div class="wrap members-jifen">
+    <img src=""  id="bigbg"/>
+    <div class="header">
+        <div class="left back"></div>
+        <h2></h2>
+    </div>
+    <div style="height:.54rem;">
+        <div class="current-jifen right">
+            <i class="icon icon-jifen left"></i>
+            <span>积分：<em id="integral" style="font-style:normal">0</em></span>
+        </div>
+    </div>
+
+    <div class="duihuancard">
+        <strong></strong>
+        <span><em></em> 积分</span>
+    </div>
+
+    <div class="duihuan-info">
+         <div class="title">
+             <p>详情介绍</p>
+         </div>
+        <p style="font-size:.18rem;margin-bottom:.27rem;" id="detail"></p>
+        <p style="font-size:.17rem;color:#bcbab9;line-height:1.5em;margin-bottom:.3rem">注：商品信息均来自于合作方，其真实性、准确性和合法性由信息拥有者（合作方）负责。本站不提供任何保证，并不承担任何法律责任。</p>
+        <p style="font-size:.18rem;color:#0099cb;margin-bottom:.24rem">有效日期：自兑换起<span id="time"></span>内有效</p>
+        <p style="font-size:.18rem;color:#0099cb;">适用范围：<span id="scope"></span></p>
+        <a href="javascript:void(0)" class="btn-duihuan">兑换</a>
+    </div>
+
+    <img src="/static/images/need.png" class="img-need"/>
+
+</div>
+
+<div class="bgDialog"></div>
+<div class="bgPop"></div>
+<div class="dialog duihuan">
+    <div class="head clearfix">
+        <span class="left">x</span>
+        <p>确认兑付</p>
+    </div>
+    <div style="text-align: center">
+        <p style="padding-top:.33rem;
+        padding-bottom:.3rem">您将兑换<span style="color:#0099cb" id="goodName"></span></p>
+        <p>扣除积分：<span id="removeintegral"></span></p>
+        <p style="padding-top:.14rem;">剩余积分：<span id="shengintegral"></span></p>
+    </div>
+    <button type="button">确认</button>
+</div>
+<div class="pop" style="width:3.56rem;margin-left:-1.78rem;">
+    <strong>提示</strong>
+    <div></div>
+    <div>
+    	<span class="default">确定</span>
+    </div>
+</div>
+
+<script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+<script charset="utf-8" type="text/javascript" src="/static/js/members-jfsc-dh.js"></script>
+</body>
+</html>

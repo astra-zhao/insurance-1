@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>订单详情</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/iscroll.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+ 	<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+</head>
+<body>
+ <div class="wrap order">
+     <div class="header">
+         <div class="left back"></div>
+         <h2>订单详情</h2>
+     </div>
+
+     <ul class="order-detail orderCon">
+         <li>
+             <div class="order-detail-top clearfix">
+                 <div class="left" id="proName"></div>
+                 <div class="right" id="status"></div>
+             </div>
+
+             <div class="order-detail-content">
+                 <div class="pro-infos">
+                     <strong class="block">产品信息</strong>
+                     <p><label>产品信息：</label><span class="color" id="proName2"></span></p>
+                     <p><label>公司名称：</label><span id="procompany"></span></p>
+                     <p><label>保单号：</label><span  id="baodanNum"></span></p>
+                     <p><label>保障期限：</label><span id="term"></span></p>
+                     <p><label>份数：</label><span id="proCount"></span></p>
+                     <p><label>价格：</label><span id="proPrice"></span></p>
+                 </div>
+
+                 <div class="buy-info">
+                     <strong class="block">购买信息</strong>
+                     <p><label>订单状态：</label><span id="status2"></span></p>
+                     <p><label>公司名称：</label><span id=""></span></p>
+                     <p><label>订单号：</label><span id="orderID"></span></p>
+                 </div>
+
+             </div>
+         </li>
+     </ul>
+ </div>
+
+ <script charset="utf-8" type="text/javascript" src="/static/js/orderDetail.js"></script>
+</body>
+</html>

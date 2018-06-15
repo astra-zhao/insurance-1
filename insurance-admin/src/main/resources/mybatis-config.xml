@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="aggressiveLazyLoading" value="true" />
+		<setting name="logImpl" value="LOG4J2" />
+	</settings>
+
+	<!-- 进行mybatis 配置 -->
+	<typeAliases>
+		<!-- 为类型 起了别名 -->
+		<typeAlias type="com.mrbt.insurance.admin.commons.utils.PageInfo" alias="PageInfo" />
+		<typeAlias type="com.mrbt.insurance.admin.model.User" alias="User" />
+		<typeAlias type="com.mrbt.insurance.admin.commons.result.UserVo" alias="UserVo" />
+		<typeAlias type="com.mrbt.insurance.admin.model.Resource" alias="Resource" />
+		<typeAlias type="com.mrbt.insurance.admin.model.Role" alias="Role" />
+		<typeAlias type="com.mrbt.insurance.admin.model.Organization" alias="Organization" />
+		<typeAlias type="com.mrbt.insurance.admin.model.SysLog" alias="SysLog" />
+		
+		<typeAlias type="com.mrbt.insurance.webset.model.CompanyInfo" alias="CompanyInfo" />
+		<typeAlias type="com.mrbt.insurance.webset.model.CompanyOccupation" alias="CompanyOccupation" />
+		<typeAlias type="com.mrbt.insurance.webset.model.CompanyType" alias="CompanyType" />
+		<typeAlias type="com.mrbt.insurance.webset.model.CustomerServiceLog" alias="CustomerServiceLog" />
+		<typeAlias type="com.mrbt.insurance.webset.model.EmployeeInfo" alias="EmployeeInfo" />
+		<typeAlias type="com.mrbt.insurance.webset.model.EmployeeordersNexus" alias="EmployeeordersNexus" />
+		<typeAlias type="com.mrbt.insurance.webset.model.Ordersinfo" alias="Ordersinfo" />
+		<typeAlias type="com.mrbt.insurance.webset.model.ProductInfo" alias="ProductInfo" />
+		<typeAlias type="com.mrbt.insurance.webset.model.TrafficProduct" alias="TrafficProduct" />
+		<typeAlias type="com.mrbt.insurance.webset.model.TrafficWebsite" alias="TrafficWebsite" />
+		<typeAlias type="com.mrbt.insurance.webset.model.Users" alias="Users" />
+		<typeAlias type="com.mrbt.insurance.webset.model.UsersDocumentInfo" alias="UsersDocumentInfo" />
+		<typeAlias type="com.mrbt.insurance.webset.model.UsersInsuredInfo" alias="UsersInsuredInfo" />
+		<typeAlias type="com.mrbt.insurance.webset.model.UsersIntegralInfo" alias="UsersIntegralInfo" />
+		<typeAlias type="com.mrbt.insurance.webset.model.UsersPolicyHolder" alias="UsersPolicyHolder" />
+	</typeAliases>
+
+</configuration> 

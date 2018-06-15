@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>产品详情</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/iscroll.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+<script type="text/javascript">
+getProductInfo();
+function getProductInfo(){
+	var strTerm="",strPrice="";//保障期限
+	if(GetQueryString("term") != "" && GetQueryString("term") != null){
+		strTerm=GetQueryString("term")
+	}
+	var str=GetQueryString("proId");
+	if(str != "" && str != null){
+	   $.ajax({
+			url:commonUrl+"/product/detailsById?id="+str+"&_="+new Date().getTime(),
+	        type:"post",
+	        async:true,
+	        dataType:"json",
+	        success:function(data){
+	        	if(data.code==200){
+	        		$("style").append(data.obj.detailsCss);
+	        		$(".detail-contener").html(data.obj.detailsInfo1);
+	        		$("script#js").append(data.obj.detailsJs);
+	        		$("#payMoney").html(data.obj.price.toFixed(2));
+	        		$("a.block.right").unbind();
+	        	    $("a.block.right").on("click",function(){
+	        	    	userLoginState("/html5/products/list/detail.html?proId="+data.obj.id+"&proName="+$("#proName").html()+"&term="+strTerm+"&price="+$("#payMoney").html());
+	        	    	if(isRealName()){
+		        	    	$(this).attr("href","../buy/buyConfirm-suLiShi.html?proId="+data.obj.id+"&proName="+$("#proName").html()+"&term="+strTerm+"&price="+$("#payMoney").html());
+	        	    	}
+	        	    })
+	        	}
+	        },
+	        error:function(data){
+	        	showPop('<p style="text-align: center;padding:.2rem 0">'+data.msg+'</p>');
+	        }
+		})  
+	}
+}
+</script>	
+<style type="text/css"></style>	
+</head>
+<body>
+ <div class="wrap detail">
+     <div class="header licai-header">
+         <div class="left back"></div>
+         <h2>百万人生A计划</h2>
+     </div>
+     <div class="detail-contener" >
+        <!--  <div>
+           <img src=""  class="banner-proSu"/>
+           <div class="clearfix proSu-detail">
+             <div class="left">
+               <strong>产品计划：</strong>
+               <p class="clearfix">
+	               <a href="javascript:void(0)" class="active" id="jihuaA">计划A</a>
+	               <a href="javascript:void(0)" id="jihuaB">计划B</a>
+               </p>
+               <p class="clearfix">
+                  <a href="javascript:void(0)" id="jihuaC">计划C</a>
+                  <a href="javascript:void(0)" id="jihuaD">计划D</a>
+               </p>
+             </div>
+             <div class="right">
+                <strong>产品：<span id="proName">百万人生A</span></strong>
+                <div style="margin-top:.1rem;padding-left:.15rem;border-left:1px solid #666">
+	                <p >被保险人年龄：<span id="age">0-60周岁</span></p>
+	                <p>购买方式：<span id="zhifu-method">在线支付，即时出单</span></p>
+	                <p>保险公司：<span id="byCompany">苏黎世财产保险</span></p>
+	                <p>限购份数： <span id="count">1份</span></p>
+                </div>
+             </div>
+           </div>
+           
+           <div class="information">
+                 <ul class="tab clearfix">
+                     <li class="active">产品说明</li>
+                     <li>索赔服务</li>
+                 </ul>
+                 <div class="con">  
+                    <div class="active con0">
+                       <div>
+                          <img src="/static/images/u29.png" width="100%"/>
+                       </div>
+                     </div>                  
+                     <div class="con1">
+                         <div style="padding-left:.2rem;">
+                           <p >请下载以下文件</p>
+                           <a href="/static/text/索赔申请书.doc" style="display:block;line-height: .4rem;color:#ea5513">索赔申请书</a>
+                           <a href="/static/text/索赔申请与文件清单.doc" style="display:block;line-height: .4rem;color:#ea5513">索赔申请与文件清单</a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div> -->
+     </div>
+   
+    <div class="btn-box clearfix">
+         <p class="left"><span id="payMoney"></span>元</p>
+         <a  href="javascript:void(0)" class="block right">立即购买</a>
+     </div>
+<div class="bgPop"></div>    
+<div class="pop" >
+     <strong>提示</strong>
+     <div></div>
+     <div>
+        <span class="default">确定</span>
+     </div>
+</div>     
+</div>
+<script id="js"></script>
+<script type="text/javascript">
+function getHeight(){
+	var height=$(window).height()-$('.header').outerHeight(true)-$('.footer').outerHeight(true)-$(".banner-proSu").outerHeight(true)-
+	$(".proSu-detail").outerHeight(true)-$("ul.tab").outerHeight(true)-$(".btn-box").outerHeight(true);
+	$(".con").css("height",height);
+	  if($(".con0").height()>height){
+		$(".con0").css({"height":height,"overflow":"hidden"});
+	       myScroll('.con0');
+     }
+	  $(".information .tab li").unbind();
+	  $(".information .tab li").on("click",function(){
+	      $(this).addClass("active").siblings().removeClass("active");
+	      var index=$(this).index();
+	      $(".con"+index).addClass("active").siblings().removeClass("active");
+	      if($(".con"+index).height()>height){
+	      	$(".con"+index).css({"height":height,"overflow":"hidden"});
+	             myScroll('.con'+index);
+	      }
+	  });
+	 $(".proSu-detail .left a").css("padding",".05rem .15rem"); 
+}   
+$(function(){
+  setTimeout('getHeight()',200);
+})
+</script> 
+</body>
+</html>

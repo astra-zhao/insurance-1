@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>产品详情</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/iscroll.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/regCheck.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/jsAddress.js"></script>
+<script type="text/javascript">
+getProductInfo();
+function getProductInfo(){
+	var strTerm="",strPrice="";
+	if(GetQueryString("term") != "" && GetQueryString("term") != null){
+		strTerm=GetQueryString("term")
+	}
+	var str=GetQueryString("proId");
+	if(str != "" && str != null){
+	   $.ajax({
+			url:commonUrl+"/product/detailsById?id="+str+"&_="+new Date().getTime(),
+	        type:"post",
+	        async:true,
+	        dataType:"json",
+	        success:function(data){
+	        	if(data.code==200){
+	        		$("style").append(data.obj.detailsCss);
+	        		$(".detail-contener").html(data.obj.detailsInfo1);
+	        		$("script#js").append(data.obj.detailsJs);
+	        		$("a.block.right").unbind();
+	        	    $("a.block.right").on("click",function(){
+	        	    	userLoginState("/html5/products/list/detail.html?proId="+data.obj.id+"&term="+strTerm);
+	        	    	if(isRealName()){
+		        	    	$(this).attr("href","../buy/buyConfirm.html?proId="+data.obj.id+"&term="+strTerm);
+	        	    	}
+	        	    })
+	        	}
+	        },
+	        error:function(data){
+	        	showPop('<p style="text-align: center;padding:.2rem 0">'+data.msg+'</p>');
+	        }
+		})  
+	}
+}
+</script>	
+<style type="text/css">
+/* .banner-proSu{
+   display: block;
+    margin: .1rem auto;
+    width: 6.2rem;
+    height: 1.5rem;
+ }
+ .proRui-detail{
+    margin:0 auto;
+    margin-bottom:.15rem;
+    width:5rem;
+ }
+ .pro-name{
+    height:.4rem;
+    font-size:.26rem;
+    text-align: center;
+    color:#000;
+    font-weight: bold;
+ }
+ .shisuan{
+   margin-top:.1rem;
+   padding-top:.1rem;
+   height:.4rem;
+   font-size:.26rem;
+   color:#000;
+   border-top:1px solid #ccc;
+ }
+ .ul-suan li{margin-bottom:.05rem;} 
+.ul-suan span.left:nth-child(1){width:1.1rem}
+.ul-suan span.left:nth-child(2){width:3.7rem}
+select,input{
+   width:1.3rem;
+   background:#f5f5f5;
+   border:1px solid #ccc;
+   padding: 0 .1rem;
+}
+input{
+	padding:0 .1rem;
+	width:2rem;
+	box-sizing:border-box;
+}
+.detail .information>ul{
+    position: relative;
+    z-index: 1;
+    height:.49rem;
+    border:1px solid #e0e0e0;
+    background:#fff;
+}
+.detail .information>ul li{
+    position: absolute;
+    z-index: 2;
+    top:0;
+    width:33%;
+    height: .49rem;
+    line-height: .49rem;
+    text-align: center;
+    font-size: .18rem;
+}
+.detail .information>ul li:nth-child(1){left:0;}
+.detail .information>ul li:nth-child(2){left:33%}
+.detail .information>ul li:nth-child(3){right:0}
+.detail .information>ul li.active{border-bottom:.03rem solid #0099cb;}
+.detail .information .con>div{display:none;}
+.detail .information .con>div.active{display:block}
+.dropTwo{
+   height:.47rem;
+   line-height:.47rem;
+   font-size:.2rem;
+   background:#fff;
+   font-weight: bold;
+   margin-bottom:.2rem;
+}
+.dropTwo span{margin-left:.5rem}
+.icon-down{margin-left:4.1rem;}
+.icon-down:before{top:.07rem;}
+.icon-down:after{top:.03rem;}
+.dropTwo+div{
+    display:none;
+	background:#ecedf1;
+	padding:0 .3rem .2rem;
+}
+.detail .information .con p{
+   line-height:1.5em;
+}
+.btn-box{background:#fff;}
+.btn-box .left{
+    width:59%;
+    padding-top:.2rem;
+    font-size:.26rem;
+    color:#000;
+    text-align: center;
+}
+.header h2{
+   margin-left: -1.5rem;
+   width: 3rem;
+}
+#area{
+   display:inline-block;
+   padding:.1rem;
+   width:3rem;
+   height:1rem;
+   box-sizing:border-box;
+   background:#f5f5f5
+}
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
+    color:#333;
+    font-size:.12rem;
+}
+input::input-placeholder,textarea::-webkit-input-placeholder{
+    color:#333;
+    font-size:.12rem;
+}
+#calculate,#reset{
+    display:block;
+    float:left;
+    margin:0;
+    margin-left:.3rem;
+	width:30%;
+	height:.4rem;
+	line-height:.4rem;
+	font-size:.22rem;
+	border-radius: .1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    color:#fff;
+}
+#reset{background:#7c7f80}
+#province,#city,#county{
+	display: block;
+	margin-bottom:.1rem;
+} */
+</style>
+</head>
+<body>
+ <div class="wrap detail">
+     <div class="header licai-header">
+         <div class="left back"></div>
+         <h2>定寿重疾保障计划</h2>
+     </div>
+     <div class="detail-contener" >
+       <!-- <div>
+           <img src=""  class="banner-proSu banner-proRui"/>
+           <p class="pro-name">保险公司：中美联泰大都会人寿</p>
+           <div class="clearfix proRui-detail">
+            <p class="shisuan">保费试算</p>
+             <ul class="ul-suan">
+               <li class="clearfix">
+                  <span class="left">投保年龄：</span>
+                  <span class="left">30天—50周岁</span>
+               </li>
+               <li class="clearfix">
+                  <span class="left">保障期限：</span>
+                  <span class="left">1年</span>
+               </li>
+               <li class="clearfix">
+                  <span class="left">缴费期间：</span>
+                  <span class="left">1年</span>
+               </li>
+               <li class="clearfix">
+                  <span class="left">缴费方式：</span>
+                  <span class="left">年缴</span>
+               </li>
+               <li class="clearfix">
+                  <span class="left">年龄：</span>
+                  <span class="left">
+                      <select name="age" id="age">
+	                    <option value="0-17">0-17</option>
+	                    <option value="18-25">18-25</option>
+	                    <option value="26-30">26-30</option>
+	                    <option value="31-35">31-35</option>
+	                    <option value="36-40">36-40</option>
+	                    <option value="41-45">41-45</option>
+	                    <option value="46-50">46-50</option>
+	                    <option value="51-55">51-55</option>
+	                    <option value="56-60">56-60</option>
+	                    <option value="61-65">61-65</option>
+	                  </select>&nbsp;岁
+                  </span>
+               </li>
+               <li class="clearfix">
+                  <span class="left">性别：</span>
+                  <span class="left">
+                      <select name="sex" id="sex" style="margin-right:.25rem">
+	                    <option value="0">女</option>
+	                    <option value="1">男</option>
+	                  </select>
+                  </span>
+               </li>
+               <li class="clearfix">
+                  <span class="left">定期寿险：</span>
+                  <span class="left">
+                     <p id="dqMoneySelectBox">
+                        <select name="dqMoneySelect" id="dqMoneySelect">
+		                    <option value="5">5</option>
+		                    <option value="7.5">7.5</option>
+		                    <option value="10">10</option>
+	                    </select>&nbsp;万元
+                     </p>
+                     <p id="dqMoneyInputBox" style="display:none" >
+                        <input type="text" id="dqMoneyInput" placeholder="以5万的整数倍递增 "/>
+		                &nbsp;万元
+		                <span style="display: block">(最低10万,最高100万)</span>
+                     </p> 
+                  </span>
+               </li>
+               <li class="clearfix">
+                  <span class="left">重大疾病：</span>
+                  <span class="left">
+                  	<input type="text" id="zjMoney" placeholder="以1万的整数倍递增 "/>&nbsp;万元  
+                  	<p>(最低10万,最高60万,未成年人限10万)</p>
+                  </span>
+               </li>
+               <li class="clearfix">
+                  <span class="left">所在地：</span>
+                  <span class="left">
+                      <select name="province" id="province"></select>
+                      <select name="city" id="city"></select>
+                      <select name="county" id="county"></select>
+                  </span>
+               </li>
+             </ul>
+             <div>
+                <button type="button" id="calculate">试算</button>
+                <button type="button" id="reset">清空</button>
+             </div>
+           </div>
+           
+           <div class="information">
+                 <ul class="tab clearfix">
+                     <li class="active">产品详情</li>
+                     <li>变更理赔</li>
+                     <li>常见问题</li>
+                 </ul>
+                 <div class="con">  
+                    <div class="active con0">
+                       <div class="dropTwo">
+                          <span>产品特色</span>
+                          <i class="icon-down"></i>
+                       </div>
+                       <div style="display:block">
+                          <p>1.睿祥派定寿及重疾保障计划</p>
+                          <p>50种重大疾病：包括严重脊髓灰质炎、急诊和医疗服务导致的艾滋病病毒感染、慢性复发性胰腺炎、严重类风湿性关节炎等重大疾病。</p>
+                          <p>12种轻症疾病：额外保障原位癌、轻度急性心肌梗塞、轻度脑中风、良性脑肿瘤、轻度颅脑损伤、轻度颅脑手术等疾病。</p>
+                          <p>30天至50周岁客户均免体检投保，可续保至65周岁</p>
+                          <p>2. 网销费率，巧妙的定寿与疾病保障搭配</p>
+                          <p>网销专属产品，特定费率保费划算；</p>
+                          <p>兼顾意外和疾病保障，双保双加固；</p>
+                          <p>一张保单可最多理赔三次，重、轻疾保障理赔后，定寿保障将继续有效。</p>
+                          <p>3. 超高保额计划满足高端人士保险需求</p>
+                          <p>最高可投保100万定寿保障、50万重大疾病保障、和10万轻症疾病保障，为高端人士提供满意的解决方案；</p>
+                          <p>最高可理赔100万定寿保险金+50万重大疾病保险金+10万轻症疾病保险金，即160万保险金。</p>
+                       </div>
+                       <div class="dropTwo">
+                          <span>产品说明</span>
+                          <i class="icon-down"></i>
+                       </div>
+                       <div>
+                          <p>投保年龄： 出生30天－50周岁</p>
+                          <p>保险期间： 1年，可续保至65周岁</p>
+                          <p>交费方式： 年交、月交</p>
+                          <p>投保地区:上海、北京、浙江、宁波、江苏、广东、深圳、四川、重庆、辽宁、大连、湖北、福建</p>
+                       </div>
+                       <div class="dropTwo">
+                          <span>阅读条款<em style="font-style:normal;font-size:.14rem;font-weight:normal;">（投保前请您认真阅读产品条款）</em></span>
+                          <i class="icon-down" style="margin-left:1.2rem;"></i>
+                       </div>
+                       <div>
+                          <p>投保年龄： 出生30天－50周岁</p>
+                          <p>保险期间： 1年，可续保至65周岁</p>
+                          <p>交费方式： 年交、月交</p>
+                          <p>投保地区:上海、北京、浙江、宁波、江苏、广东、深圳、四川、重庆、辽宁、大连、湖北、福建</p>
+                       </div>
+                       <div class="dropTwo">
+                          <span>投保案例</span>
+                          <i class="icon-down"></i>
+                       </div>
+                       <div>
+                          <p>在北京工作的小明先生今年24周岁，在雾霾严重的城市里生活，他更加关注自身的健康保障。小明为自己投保知心派定寿及重疾保障计划，保障内容为定期寿险10万元、50种重大疾病10万元、12种轻微疾病2万元。保险期限为1年。保费仅需192元。</p>
+                          <p>● 在保障期内，如果小明先生罹患合同约定的12种轻症疾病，如原位癌、轻度急性心肌梗塞、轻度脑中风、良性脑肿瘤等，则可获得2万轻症疾病保证金，且50种重疾和身故保障仍然继续；</p>
+                          <p>● 在保障期内，如果小明先生罹患合同约定的50种重大疾病，一经确诊将立即获得10万的重大疾病保证金，且身故保障仍然继续；</p>
+                          <p>● 在保障期内，如果小明先生不幸因意外或疾病导致身故，则其法定受益人可获得10万身故保证金，本保险合同终止。</p>
+                          <p>一份保单，小明和其法定受益人最多可以理赔三次，仅192元保费最多可获得2万元轻症疾病保险金、10万元重症疾病保险金，以及10万元身故保险金，共计22万元整。</p>
+                          <p>报送文件编号：</p>
+                          <p>中美联泰大都会人寿[2014]527号</p>
+                          <p>条款文字编码：</p>
+						  <p>中美联泰大都会[2014]定期寿险187号</p>
+						  <p>中美联泰大都会[2014]疾病保险189号</p>
+						  <p style="color:red">特别提示： 本产品没有犹豫期，若申请退保将会损失已交保费。</p>
+                       </div>
+                     </div>                  
+                     <div class="con1">
+                         <div style="padding-left:.2rem;">
+                           <p >请下载以下文件</p>
+                         </div>
+                     </div>
+                     <div class="con2">
+                         <div style="padding-left:.2rem;">
+                           <p >请下载以下文件</p>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div> -->
+     </div>
+   
+    <div class="btn-box clearfix">
+         <p class="left"><span id="payMoney"></span>元</p>
+         <a  href="javascript:void(0)" class="block right">立即购买</a>
+     </div>
+<div class="bgPop"></div>    
+<div class="pop" >
+     <strong>提示</strong>
+     <div></div>
+     <div>
+        <span class="default">确定</span>
+     </div>
+</div>     
+</div>
+<script id="js">
+$(function(){
+	addressInit('province', 'city', 'county');
+	$("#age").on("change",function(){
+		if($(this).val()=="0-17"){
+			$("#dqMoneySelectBox").show();
+			$("#dqMoneyInputBox").hide();
+		}else{
+			$("#dqMoneySelectBox").hide();
+			$("#dqMoneyInputBox").show();
+		}
+	})
+   init();
+	
+//页面初始化	
+function init(){
+	$("#dqMoneyInput").on("blur",function(){
+		regdqMoney("#dqMoneyInput")
+	})
+	$("#zjMoney").on("blur",function(){
+		regZJMoney("#zjMoney")
+	})
+	$("#calculate").on("click",function(){
+		if($("#age").val()=="0-17"){
+			if(regZJMoney("#zjMoney")){
+				calculateTotal()
+			}
+		}else{
+			if(regdqMoney("#dqMoneyInput") && regZJMoney("#zjMoney")){
+				calculateTotal()
+			}
+		}
+	})
+	$("#reset").on("click",function(){
+		reset()
+	})
+	
+}	
+
+//reg-dqMoney定期寿险	
+function regdqMoney(id){
+	var money=$(id).val();
+	if(money=="" || money==null){
+		showPop('<p style="text-align: center;padding:.1rem 0">请输入定期寿险的保额</p>');
+		return false;
+	}else{
+		if(money % 5 != 0){
+			showPop('<p style="text-align: center;padding:.1rem 0">定期寿险保额必须以5万元递增</p>');
+			return false;
+		}else if(money<10 || money>100){
+			showPop('<p style="text-align: center;padding:.1rem 0">未成年人定期寿险保额最高100万，最低10万</p>');
+			return false;
+		}else{
+			return true;
+		}
+	}
+}
+	
+//reg-zjMoney重疾	
+function regZJMoney(id){
+	var money=$(id).val();
+	var isAdult=$("#age").val()=="0-17"?true:false;
+	if(money=="" || money==null){
+		showPop('<p style="text-align: center;padding:.2rem 0">请输入重大疾病保额</p>');
+		return false;
+	}else{
+		if(isAdult){
+			if(money % 1 != 0){
+				showPop('<p style="text-align: center;padding:.2rem 0">重大疾病保额保额必须是正整数</p>');
+				return false;
+			}else if(money<1 || money>10){
+				showPop('<p style="text-align: center;padding:.2rem 0">未成年人重大疾病保额最高10万，最低1万</p>');
+				return false;
+			}else{
+				return true;
+			}
+		}else{
+			if(money % 1 != 0){
+				showPop('<p style="text-align: center;padding:.2rem 0">重大疾病保额必须是正整数</p>');
+				return false;
+			}else if(money<10 || money>60){
+				showPop('<p style="text-align: center;padding:.2rem 0">成年人重大疾病保额最高60万，最低10万</p>');
+				return false;
+			}else{
+				return true;
+			}
+		}
+	}
+}
+	
+//计算合计	
+function calculateTotal(){
+  var age=$("#age").val(),
+      sex=$("#sex").val(),//0-女  1-男
+      dqMoney=null,
+      zjMoney=parseInt($("#zjMoney").val())*10000,
+      total=null;
+  
+  if(age=="0-17"){
+	  dqMoney=parseInt($("#dqMoneySelect").val())*10000;
+  }else{
+	  dqMoney=parseInt($("#dqMoneyInput").val())*10000; 
+  }
+  
+  switch (age) {
+	case "0-17":
+		if(sex==0){
+			total=dqMoney/1000*0.72+zjMoney/1000*1.5;
+		}else{
+			total=dqMoney/1000*0.79+zjMoney/1000*1.19;
+		}
+		break;
+	case "18-25":
+		if(sex==0){
+			total=dqMoney/1000*0.76+zjMoney/1000*1.32;
+		}else{
+			total=dqMoney/1000*0.45+zjMoney/1000*1.16;
+		}
+		break;
+	case "26-30":
+		if(sex==0){
+			total=dqMoney/1000*0.45+zjMoney/1000*2.46;
+		}else{
+			total=dqMoney/1000*0.89+zjMoney/1000*1.99;
+		}
+		break;
+	case "31-35":
+		if(sex==0){
+			total=dqMoney/1000*0.54+zjMoney/1000*4.48;
+		}else{
+			total=dqMoney/1000*1.15+zjMoney/1000*3.05;
+		}
+		break;
+	case "36-40":
+		if(sex==0){
+			total=dqMoney/1000*0.76+zjMoney/1000*7.16;
+		}else{
+			total=dqMoney/1000*1.61+zjMoney/1000*5.36;
+		}
+		break;
+	case "41-45":
+		if(sex==0){
+			total=dqMoney/1000*1.13+zjMoney/1000*7.16;
+		}else{
+			total=dqMoney/1000*2.31+zjMoney/1000*5.36;
+		}
+		break;	
+	case "46-50":
+		if(sex==0){
+			total=dqMoney/1000*1.67+zjMoney/1000*13.67;
+		}else{
+			total=dqMoney/1000*3.32+zjMoney/1000*19.24;
+		}
+		break;
+	case "51-55":
+		if(sex==0){
+			total=dqMoney/1000*2.78+zjMoney/1000*17.71;
+		}else{
+			total=dqMoney/1000*4.84+zjMoney/1000*31.6;
+		}
+		break;
+	case "56-60":
+		if(sex==0){
+			total=dqMoney/1000*4.97+zjMoney/1000*24.54;
+		}else{
+			total=dqMoney/1000*7.39+zjMoney/1000*48.12;
+		}
+		break;	
+	default:
+		if(sex==0){
+			total=dqMoney/1000*8.84+zjMoney/1000*35.1;
+		}else{
+			total=dqMoney/1000*14.29+zjMoney/1000*66.89;
+		}
+	  break;
+	}
+  
+  $("#payMoney").html(total)
+  
+}	
+
+//清空
+function reset(){
+	$("#age").val("0-17");
+	$("#sex").val("0");
+	if($("#dqMoneySelectBox").css("display")=="block"){
+		$("#dqMoneySelect").val("5")
+	}else{
+		$("#dqMoneyInputBox").hide();
+		$("#dqMoneySelectBox").show();
+	}
+	$("#zjMoney").val("");
+	addressInit('province', 'city', 'county', '北京', '市辖区', '东城区');
+	$("#payMoney").html("");
+}
+}) 
+</script>
+<script type="text/javascript" >
+function getHeight(){
+	var height=$(window).height()-$('.header').outerHeight(true)-$(".btn-box").outerHeight(true);
+	if($(".detail-contener").height()>height){
+		$(".detail-contener").css({"height":height,"overflow":"auto"});
+     }
+	  $(".information .tab li").unbind();
+	  $(".information .tab li").on("click",function(){
+	      $(this).addClass("active").siblings().removeClass("active");
+	      var index=$(this).index();
+	      $(".con"+index).addClass("active").siblings().removeClass("active");
+	  });
+	 $(".dropTwo").on("click",function(){
+		 $(this).next("div").toggle();
+	 })
+}   
+setTimeout('getHeight()',200);
+</script> 
+</body>
+</html>

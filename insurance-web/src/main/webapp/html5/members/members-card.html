@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>我的银行卡</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+<script charset="utf-8" type="text/javascript" >
+  userLoginState()
+</script>
+</head>
+<body>
+<div class="wrap cards">
+    <div class="header">
+        <div class="left back"></div>
+        <h2>我的银行卡</h2>
+    </div>
+    <div class="cards-contener">
+       <div></div>
+    </div>
+
+
+    <div class="addCard">
+        <a href="members-addBankCard.html" style="display:block;width:100%;height:100%">
+            <i class="icon-add left"></i>
+            <span>添加银行卡</span>
+        </a>
+    </div>
+
+   
+<div class="bgPop"></div>
+<div class="bgDialog"></div>
+<div class="dialog removeCard" >
+     <div class="head clearfix" style="border:0">
+        <p>删除银行卡</p>
+     </div>
+    <p style="padding:.13rem 0 .3rem;text-align: center;font-size:14px;color:#ea5513">确认删除该卡的信息</p>
+    <div class="btns">
+       <span class="left" id="cancel">取消</span>
+       <span class="left" id="remove">确认</span>
+    </div>
+</div>
+<div class="pop default">
+    <strong>提示</strong>
+    <div></div>
+    <div>
+        <span class="default">确定</span>
+    </div>
+</div>
+</div>
+<script charset="utf-8" type="text/javascript" src="/static/js/iscroll.js"></script>
+<script type="text/javascript" src="/static/js/members-card.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>理赔</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/iscroll.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+<script charset="utf-8" type="text/javascript">
+   userLoginState()
+</script>
+</head>
+<body>
+<div class="wrap lipei">
+    <div class="header">
+        <div class="left back"></div>
+        <h2>理赔</h2>
+    </div>
+    <div class="lipei-content">
+        <img src="/static/images/img_lipei.png" />
+        <button type="button">报案</button>
+        <p>客服电话：400-000-000</p>
+        <button type="button" style="background:#0099cb">协助理赔</button>
+    </div>
+
+<div class="bgPop"></div>
+<div class="bgDialog"></div>
+<div class="dialog orderConfirm lipei">
+    <div class="head clearfix" style="border:0">
+        <span class="left">x</span>
+        <p>协助理赔</p>
+    </div>
+    <div style="padding-top:.15rem">
+        <input type="text" placeholder="请输入您的电话号码" id="tel"/>
+        <p class="clearfix" style="padding:.1rem 0">
+            *确认协助后，我们的工作人员将在7个工作日之内与您取得联系，协助您的理赔，请您保障电话畅通，谢谢！
+        </p>
+    </div>
+    <div class="btns">
+        <button type="button">协助</button>
+    </div>
+</div>
+<div class="pop">
+    <strong>提示</strong>
+    <div></div>
+    <div>
+        <span class="default">确定</span>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript" src="/static/js/regCheck.js"></script>
+<script>
+$(function(){
+    back();
+    //showFooter	
+	getFooter();
+	showFooter(3);
+	var height=$(window).height()-$(".header").outerHeight(true)-$(".footer").outerHeight(true);
+	if($(".lipei-content").height()>height){
+		$(".lipei-content").css({"hegiht":height,"overflow":"hidden"});
+		myScroll(".lipei-content")
+	}
+    $(".lipei-content button:eq(1)").on("click",function(){
+        showDialog("dialog");
+        $(".dialog.lipei button").on("click",function(){
+            if(regPhone("#tel")){
+            	$(".bgDialog").hide();
+                $(".dialog.lipei").hide();
+            	showPop('<p style="padding-bottom:.25rem;margin:0 auto;width:2.4rem;line-height: 1.5em;">您好，您的申请已提交，我们的工作人员将在7个工作日之内与您取得联系，协助您的理赔，请您保障电话畅通，谢谢！</p>')
+            }
+        })
+    })
+})
+
+</script>
+</body>
+</html>

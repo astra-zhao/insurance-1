@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>订单支付</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+<style type="text/css">
+#getCode{
+  display:inline-block;
+  width:1.5rem;
+}
+</style>	
+	
+</head>
+<body>
+<div class="wrap pay">
+    <div class="header">
+        <div class="left back"></div>
+        <h2>订单支付</h2>
+    </div>
+    <div class="pay-contener">
+        <div class="tip">
+            <i class="icon icon-ok left"></i>
+            <span  class="left">订单已成功生成！请尽快完成支付，以免因为起保时间过期导致支付失败。</span>
+        </div>
+        <div class="pay-money">
+            <p>付款金额</p>
+            <p><strong id="moneys"></strong><span>元</span></p>
+        </div>
+        <div class="title-orderConfirm clearfix">
+            <i class="icon icon-info left"></i>
+            <span class="left">订单信息</span>
+        </div>
+        <ul>
+          <li>
+              <span>订单号：</span>
+              <span class="color" id="orderNum"></span>
+          </li>
+          <li>
+             <span>产品名称：</span>
+             <span class="color" id="proName">无人驾驶飞行器责任保险</span>
+          </li>
+          <li>
+             <span>订单份数：</span>
+             <span id="procunt"></span>
+          </li>
+          <li>
+              <span>单价：</span>
+              <span>¥ <em id="price">300.00</em></span>
+          </li>
+        </ul>
+        
+        <!-- <div class="bankcard">
+          <a href="javascript:void(0)" style="display:block;width:100%;height:100%">
+            <span id="shortName"></span>
+            <span id="weihao" data-code=""></span>
+            <i class="icon-right"></i>
+          </a>  
+        </div> -->
+
+        <a href="javascript:void(0)" class="btn">立即支付</a>
+        <p class="tip-security" style="text-align: center">
+            <i class="icon icon-security"></i>
+            <span>您正在安全的支付环境中，请放心使用</span>
+        </p>
+        
+    </div>
+
+<div class="bgPop"></div>
+<div class="bgDialog"></div>
+<div class="dialog orderConfirm pay">
+    <div class="head clearfix">
+        <span class="left">x</span>
+        <p>请选择银行卡</p>
+    </div>
+    <ul id="bankCardsList">
+        <li style="border:0;color:#4a4a4a;height:.63rem;line-height: .63rem">
+            <a href="../../members/members-addBankCard.html" style="display:block;width:100%;height:100%">
+                <span>使用新卡支付</span>
+                <i class="icon-right" style="top:.2rem"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="btns">
+        <span class="left">取消</span>
+        <span class="left">确定</span>
+    </div>
+</div>
+<div class="dialog orderConfirm check-shenfen">
+    <div class="head clearfix">
+        <span class="left">x</span>
+        <p>获取验证码</p>
+    </div>
+    <div class="check-div">
+       <div class="check-item">
+           <input type="text"required="required" placeholder="请输入验证码" id="getCode"/>
+           <a href="javascript:void(0)" class="right getRegistCode">获取验证码</a>
+       </div>
+       <p>*为了您的资金安全，该笔交易需要短信确认，验证码已发送至您的手机。</p>
+       <button type="button"  class="btn_ok btn-gray" style="margin-top:.25rem">确认</button>
+    </div>
+</div>
+<div class="pop">
+    <strong>提示</strong>
+    <div></div>
+    <div>
+        <span class="default">确定</span>
+    </div>
+</div> 
+
+</div>
+
+<script charset="utf-8" type="text/javascript" src="/static/js/pay-dajiang.js"></script>
+</body>
+</html>

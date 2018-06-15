@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>产品详情</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/iscroll.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/jsAddress.js"></script>
+<script type="text/javascript">
+$(function(){
+	back();
+})
+var pname="";
+getProductInfo();
+function getProductInfo(){
+	var strTerm="",strPrice="";//保障期限
+	if(GetQueryString("term") != "" && GetQueryString("term") != null){
+		strTerm=GetQueryString("term")
+	}
+	var str=GetQueryString("proId");
+	if(str != "" && str != null){
+	   $.ajax({
+			url:commonUrl+"/product/detailsById?id="+str+"&_="+new Date().getTime(),
+	        type:"post",
+	        async:true,
+	        dataType:"json",
+	        success:function(data){
+	        	if(data.code==200){
+	        		pname=data.obj.pname;
+	        		$("style").append(data.obj.detailsCss);
+	        		$(".detail-contener").html(data.obj.detailsInfo1);
+	        		$("script#js").append(data.obj.detailsJs);
+	        		$("a.block.right").unbind();
+	        		if(pname.indexOf("百万人生")!=-1){
+	        			$("#payMoney").html(data.obj.price.toFixed(2));
+	        			$("a.block.right").on("click",function(){
+		        	    	userLoginState("/html5/products/list/detail.html?proId="+data.obj.id+"&proName="+$("#proName").html()+"&term="+strTerm+"&price="+$("#payMoney").html());
+		        	    	if(isRealName()){
+			        	    	$(this).attr("href","../buy/buyConfirm.html?proId="+data.obj.id+"&proName="+$("#proName").html()+"&term="+strTerm+"&price="+$("#payMoney").html());
+		        	    	}
+		        	    })
+	        		}else{
+	        			$("a.block.right").on("click",function(){
+		        	    	userLoginState("/html5/products/list/detail.html?proId="+data.obj.id);
+		        	    	if(isRealName()){
+			        	    	$(this).attr("href","../buy/buyConfirm.html?proId="+data.obj.id);
+		        	    	}
+		        	    })
+	        		}
+	        	}
+	        },
+	        error:function(){}
+		})  
+	}
+}
+</script>	
+<style type="text/css"></style>	
+</head>
+<body>
+ <div class="wrap detail">
+     <div class="header licai-header">
+         <div class="left back"></div>
+         <h2></h2>
+     </div>
+     <div class="detail-contener" ></div>
+     <div class="btn-box clearfix">
+         <p class="left"><span id="payMoney"></span>元</p>
+         <a  href="javascript:void(0)" class="block right">立即购买</a>
+     </div>
+<div class="bgPop"></div>    
+<div class="pop" >
+     <strong>提示</strong>
+     <div></div>
+     <div>
+        <span class="default">确定</span>
+     </div>
+</div>     
+</div>
+<script  type="text/javascript" id="js"></script> 
+</body>
+</html>

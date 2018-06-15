@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>会员中心</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+<script type="text/javascript">
+   userLoginState("/html5/members/members.html")
+</script>
+</head>
+<body>
+<div class="wrap members">
+    <div class="header licai-header">
+        <div class="left back"></div>
+        <h2>会员中心</h2>
+    </div>
+    <div class="touxiang-box">
+        <div class="touxiang">
+            <a href="members-revisePhoto.html">
+                <img src="/static/images/photo.png" id="userAvatar"/>
+                <p id="userName"></p>
+            </a>
+
+        </div>
+    </div>
+    <div class="touxiang-box-bottom">
+            <span>
+                <i class="icon icon-jifen"></i>
+                <span>积分：<em  id="userIntegral">0</em></span>
+            </span>
+            <span>
+                <a href="members-jfsc.html">
+                    <i class="icon icon-jifensc"></i>
+                    <span style="color:#fff">积分商城</span>
+                </a>
+            </span>
+    </div>
+    <ul class="members-collection">
+        <li>
+            <a href="../products/buy/order.html">
+                <i class="icon icon-order left"></i>
+                <span>我的订单</span>
+                <i class="icon-right"></i>
+            </a>
+        </li>
+        <li>
+            <a href="members-card.html" >
+                <i class="icon icon-card left"></i>
+                <span>我的银行卡</span>
+                <i class="icon-right"></i>
+            </a>
+        </li>
+        <li>
+            <a href="members-revisePhoto.html" >
+                <i class="icon icon-info left"></i>
+                <span>我的资料</span>
+                <i class="icon-right"></i>
+            </a>
+        </li>
+        <li>
+            <a href="lipei.html" >
+                <i class="icon icon-lipei left"></i>
+                <span>报案理赔</span>
+                <i class="icon-right"></i>
+            </a>
+        </li>
+        <li>
+            <a href="members-revisePassword.html" >
+                <i class="icon icon-password left"></i>
+                <span>修改密码</span>
+                <i class="icon-right"></i>
+            </a>
+        </li>
+        <li id="logout">
+            <a href="javascript:void(0)" style="padding-left:1.25rem;">
+                <span style="color:#f27638">退出登录</span>
+            </a>
+        </li>
+    </ul>
+
+    <img src="/static/images/need.png" class="img-need"/>
+
+<div class="bgDialog"></div>
+<div class="bgPop"></div>
+<div class="dialog orderConfirm">
+     <div class="head clearfix" style="border-bottom:0">
+        <p>退出</p>
+     </div>
+    <p style="padding:.1rem 0 .3rem;text-align: center;font-size:14px;color:#ea5513">
+                       确定退出账号？
+    </p>
+    <div class="btns" style="height:.6rem">
+        <span class="left" style="height:.6rem;line-height:.6rem">取消</span>
+        <span class="left" style="height:.6rem;line-height:.6rem">确定</span>
+    </div>
+</div> 
+<div class="pop" >
+    <strong>提示</strong>
+    <div></div>
+    <div>
+       <span class="default">确定</span>
+    </div>
+</div>   
+</div>
+
+ 
+<script type="text/javascript" src="/static/js/members.js"></script>
+</body>
+</html>

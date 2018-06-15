@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>京东卡</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+<script type="text/javascript">
+   userLoginState()
+</script>
+</head>
+<body>
+<div class="wrap members-jifen">
+    <img src="/static/images/bg_jifen-jd-top.png" id="bgImg"/>
+    <div class="header">
+        <div class="left back"></div>
+        <h2>京东卡</h2>
+    </div>
+    <div style="height:.54rem;">
+        <div class="current-jifen right">
+            <i class="icon icon-jifen left"></i>
+            <span>积分：<i class="integral" style="font-style: normal;">0</i></span>
+        </div>
+    </div>
+
+    <div class="duihuancard">
+        <strong>京东E卡-真情卡</strong>
+        <span><em>1000</em> 积分</span>
+    </div>
+
+    <div class="duihuan-info">
+         <div class="title">
+             <p>详情介绍</p>
+         </div>
+        <p style="font-size:.18rem;margin-bottom:.27rem;" id="detail">价值50元的京东E卡真情卡（电子卡）</p>
+        <p style="font-size:.17rem;color:#bcbab9;line-height:1.5em;margin-bottom:.3rem">注：商品信息均来自于合作方，其真实性、准确性和合法性由信息拥有者（合作方）负责。本站不提供任何保证，并不承担任何法律责任。</p>
+        <p style="font-size:.18rem;color:#0099cb;margin-bottom:.24rem">有效日期：自兑换起<span id="time"></span>内有效</p>
+        <p style="font-size:.18rem;color:#0099cb;">适用范围：<span id="scope"></span></p>
+    </div>
+
+    <img src="/static/images/need.png" class="img-need"/>
+
+</div>
+
+
+
+<script>
+$(function(){
+    back();
+    //获取积分
+	 $.ajax({
+		url:commonUrl+"/user/personalCenter",
+		type:"post",
+		dataType:"json",
+		success:function(data){
+			if(data.code==200){
+				var obj=data.obj;
+	              if(obj.integral!=null && obj.integral!=""){
+	              	$("i.integral").html(obj.integral);
+				}
+			}else if(data.code==1010){
+				showPop('<p style="text-align: center;padding:.1rem 0">您还没有登录</p>');
+				$(".pop span").on("click",function(){
+	   	        $(".bgPop").hide();
+	   	        $(".pop").hide();
+	   	        window.location.href="../login.html"
+	   	    })
+			}else{
+ 				showPop('<p style="text-align: center;padding:.1rem 0">'+data.msg+'</p>');
+ 			}
+		},
+		error:function(){}
+	});
+    
+    
+    //获取详情
+    var str=GetQueryString("proId");
+    if(str!="" && str!=null){
+    	$.ajax({
+    		url:commonUrl+"/user/getIntegralProByPK",
+    		type:"post",
+    		dataType:"json",
+    		data:{
+    			proId:str
+    		},
+    		success:function(data){
+    			if(data.code==200){
+    				var obj=data.obj;
+   	              	$("#bgImg").attr("src",obj.bgUrl);
+   	              	$(".header h2").html(obj.shortName);
+   	                $(".duihuancard strong").html(obj.name);
+   	                $(".duihuancard em").html(obj.integral);
+   	                $("#detail").html(obj.details);
+   	                $("#time").html(integralTime(new Date().getFullYear(),obj.expiryDate));
+   	                $("#scope").html(obj.scope)
+    			}else if(data.code==1010){
+    				showPop('<p style="text-align: center;padding:.1rem 0">您还没有登录</p>');
+    				$(".pop span").on("click",function(){
+    	   	        $(".bgPop").hide();
+    	   	        $(".pop").hide();
+    	   	        window.location.href="../login.html"
+    	   	    })
+    			}
+    		},
+    		error:function(){}
+    	});
+    }
+ 	
+});
+
+</script>
+</body>
+</html>

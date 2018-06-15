@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css"></style>
+<script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+<script type="text/javascript">
+	$.ajax({
+		url:commonUrl+"/activePage/getPageById",
+		data:{id:GetQueryString('id')},
+		type:'post',
+		dataType:'json',
+		success:function(data){
+			$("style").html(data.pageCss);
+			$("body").html(data.pageHtml);
+			$("#pageJs").html(data.pageJs);
+		}
+	});
+</script>
+<script id="pageJs" type="text/javascript"></script>
+</head>
+<body>
+</body>
+</html>

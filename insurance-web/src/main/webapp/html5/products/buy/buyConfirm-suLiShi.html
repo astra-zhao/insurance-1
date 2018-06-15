@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>产品购买</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/mobiscroll.2.13.2.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/mobiscroll.2.13.2.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+<script type="text/javascript">
+getPageInfo()
+function getPageInfo(){
+	var str=GetQueryString("proId");
+	if(str != "" && str != null){
+		$.ajax({
+			url:commonUrl+"/product/buyById?id="+str+"&_="+new Date().getTime(),
+	        type:"post",
+	        async:true,
+	        dataType:"json",
+	        success:function(data){
+	        	if(data.code==200){
+	        		$("style").append(data.obj.buyCss);
+	        		$("body").html(data.obj.buyInfo1);
+	        	}
+	        },
+	        error:function(data){
+	        	showPop('<p style="text-align: center;padding:.2rem 0">'+data.msg+'</p>')
+	        }
+		})
+	}
+}	
+</script>	
+<style type="text/css">
+/*   .dialogText.dialogText1 p{
+     line-height:1.5em;
+     margin-bottom:.1rem;
+  }
+  .dialogText0 a+div{display:none}
+  .dialogText0>div a{
+      display:block;
+      padding:.1rem 0;
+      padding-left:.1rem;
+      font-size:.2rem;
+      color:#000;
+      text-decoration: underline
+  }
+  .dialogText2 ul li{
+     min-height:.2rem;
+     margin-bottom:.1rem;
+ }
+  .dialogText2 ul li span,.dialogText3 span{display:inline-block;}
+  .dialogText2 ul span.first{width:20%;line-height:.2rem}
+  .dialogText2 ul span.second{width:60%}
+  .dialogText2 ul span.third{width:20%;line-height:.2rem}
+  .dialogText3 p{margin-bottom:.1rem;}
+  .dialogText3 span.first{width:20%;}
+  .dialogText3 span.second{width:80%;}
+  #professionTree_dummy{
+    padding-right:.41rem;
+  }
+  .check-box span{display: inline-block;margin-top:.08rem;} */
+</style>
+</head>
+<body>
+ <!-- <div class="wrap detail">
+     <div class="header">
+         <div class="left back"></div>
+         <h2>产品购买</h2>
+     </div>
+    <div class="buyConfirm-contener">
+         <div>
+             <ul class="section pro-guding">
+                <li class="clearfix">
+                    <div class="left">产品名称：</div>
+                    <div class="right">
+                        <input type="text" name="pro-name" id="pro-name" value="" readonly="readonly"/>
+                    </div>
+                </li>
+                 <li class="clearfix">
+                     <div class="left">投保日期：</div>
+                    <div class="right clearfix">
+                        <input type="text" name="pro-stratTime" id="pro-stratTime" value=""  readonly="readonly" style="float:left"/>
+                        <span class="reception" style="padding-top:.15rem;display:inline-block;float:left">三个工作日后生效</span>
+                    </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">截止日期：</div>
+                    <div class="right">
+                        <input type="text" name="pro-endTime" id="pro-endTime" value=""  readonly="readonly"/>
+                    </div>
+                 </li>
+             </ul>
+
+             <ul class="section pro-baoren">
+                 <li class="clearfix">
+                     <div class="left">投保人姓名：</div>
+                    <div class="right">
+			<input type="text" name="baoren-name" id="baoren-name" value=""  readonly="readonly"/>
+                    </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">证件类型：</div>
+                    <div class="right">
+                       <input type="text" name="credentials-type" id="credentials-type" value="身份证"  readonly="readonly"/>
+                    </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">证件号码：</div>
+                    <div class="right">
+                        <input type="text" name="credentials" id="credentials"  readonly="readonly"/>
+                        <p>
+                            <i class="icon icon-bao"></i>
+                            <span>您的信息安全由中国人民财产保险公司承保，请放心填写</span>
+                        </p>
+                    </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">性别：</div>
+                     <div class="right" style="padding-top:.1rem">
+                         <input type="radio" name="sex" value="0" class="input-sex" data-con="女"/>&nbsp;女
+                         <input type="radio" name="sex" value="1" class="input-sex" style="margin-left:.2rem" data-con="男"/>&nbsp;男
+                     </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">出生日期：</div>
+                     <div class="right">
+                         <input type="text" name="birthday" id="birthday" />
+                     </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">手机号码：</div>
+                     <div class="right">
+                         <input type="text" name="phone" id="phone"  readonly="readonly"/>
+                     </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">电子邮箱：</div>
+                     <div class="right">
+                         <input type="text" name="email" id="email" required placeholder="请输入电子邮箱" style="float:left"/>
+                         <span class="reception" style="padding-top:.15rem;display:inline-block;float:left">接受电子保单</span>
+                     </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">通讯地址：</div>
+                     <div class="right right-position">
+                         <select name="select-province" id="select-province">
+                            <option value="请选择">请选择</option>
+                         </select>
+                         <i class="icon-down"></i>
+                     </div>
+                 </li>
+                 <li class="clearfix" id="select-city-li">
+                     <div class="left"></div>
+                     <div class="right right-position">
+                         <select name="select-city" id="select-city">
+                            <option value="请选择">请选择</option>
+                         </select>
+                         <i class="icon-down"></i>
+                     </div>
+                 </li>
+                 <li class="clearfix" id="select-area-li">
+                     <div class="left"></div>
+                     <div class="right right-position">
+                         <select name="select-area" id="select-area">
+                           <option value="请选择">请选择</option>
+                         </select>
+                         <i class="icon-down"></i>
+                     </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">具体地址：</div>
+                     <div class="right">
+                         <textarea  name="area" id="area" style="width:3.34rem;height:1rem;box-sizing:border-box;padding:.1rem;"></textarea>
+                     </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">当前职业：</div>
+                     <div class="right right-position">
+                         <select name="professionTree" id="professionTree">
+                             <option value="0" disabled selected>请选择职业</option>
+                             <option value="1">律师/法律顾问</option>
+                             <option value="2">商店员工（现场工作，非体力工作）</option>
+                             <option value="3">非船舶相关勘测员（大多数在办公室工作，很少有出差）</option>
+                             <option value="4">商人（非体力工作但不包括煤炭商/金属废料商人）</option>
+                             <option value="5">私营业主（非体力工作）</option>
+                             <option value="6">销售人员</option>
+                             <option value="7">服务员（除水上、航空及地下作业的员工）</option>
+                             <option value="8">拍卖人（不包含家畜）</option>
+                             <option value="9">酿酒厂员工（不包括运货工人）</option>
+                             <option value="10">咖啡馆工作人员</option>
+                             <option value="11">宴席酒会及饮食服务承办人</option>
+                             <option value="12">办公室、商店、住宅内部清洁工人</option>
+                             <option value="13">学院工作人员（除讲师外的其他工作人员）</option>
+                             <option value="14">电脑工程师</option>
+                             <option value="15">非船舶相关工程师/咨询顾问</option>
+                             <option value="16">新闻记者(不包括在外国工作者及战地记者)</option>
+                             <option value="17">摄影师（不包括国外工作者及高空/水下作业者）</option>
+                             <option value="18">仓库管理员和批发商（轻量货物,不包含易燃、易爆货物仓储）</option>
+                             <option value="19">估价员、协调人员</option>
+                             <option value="20">儿童(六个月以上）</option>
+                             <option value="21">学生</option>
+                             <option value="22">管理人员(偶尔涉及室外现场工作，但非10米以上高空或地下)</option>
+                         </select>
+                         <i class="icon-down"></i>
+                     </div>
+                 </li>
+                 
+             </ul>
+             <div class="addBbr-box"></div>
+             <p class="add-bar">
+                 <i></i>
+                 <span>添加被保人</span>
+             </p>
+             <ul class="section money">
+                 <li>
+                     <div>
+                         <span class="left">¥</span>
+                         <span class="left" id="moneys"></span>
+                     </div>
+                 </li>
+             </ul>
+
+       <p class="check-box clearfix">
+       <i class="icon icon-check left" data-check="false"></i>
+       <span>本人已阅读并同意<a href="javascript:void(0)" id="tiaokuan">投保条款</a>和<a href="javascript:void(0)" id="guize">投保规则</a></span>
+     </p>
+         </div>
+     </div>
+
+     <a href="javascript:void(0)" class="block btn-noconfirm" style="width:100%">确认购买</a>
+     
+<div class="bgDialog"></div>
+<div class="dialog orderConfirm dialog-tip">
+    <div class="head clearfix" style="border:0">
+        <span class="left">x</span>
+        <p>确认提交订单</p>
+    </div>
+    <p class="clearfix" style="padding:.1rem 0">
+        <i class="icon icon-ok left"></i>
+        <span class="right">请确保您已阅读投保申明中的内容并同意接受</span>
+    </p>
+    <div class="btns">
+        <span class="left">取消</span>
+        <span class="left">确定</span>
+    </div>
+</div>
+<div class="bgPop"></div>
+<div class="pop" >
+    <strong>提示</strong>
+    <div></div>
+    <div>
+       <span class="default">确定</span>
+    </div>
+</div>
+<div class="bgDialog"></div>
+<div class="bgDialogExceeding"></div>
+<div class="dialog orderConfirm dialog-remove">
+     <div class="head clearfix" style="border:0">
+        <p>删除被保人</p>
+    </div>
+    <p style="padding:.1rem 0 .3rem;text-align: center;font-size:14px;color:#ea5513">
+                      确定要删除此被保人?
+    </p>
+    <div class="btns">
+        <span class="left">取消</span>
+        <span class="left">确定</span>
+    </div>
+</div>
+<div class="dialog orderConfirm dialog-exceeding" style="z-index:1000000000">
+    <p style="padding:.3rem 0 .4rem;text-align: center;font-size:14px;color:#ea5513">
+                     预览文件过大，建议使用wifi环境
+    </p>
+    <div class="btns">
+        <span class="left">等等再来</span>
+        <span class="left continue">土豪继续</span>
+    </div>
+</div>  
+</div>
+<div class="bgText"></div>
+<div class="dialogText dialogText0">
+   <div>
+	     <p style="line-height:.6rem;height:.6rem;font-size:.26rem">*请选择阅读以下您所需要的条款：</p>
+	     <a href="javascript:void(0)"  id="show0">《个人人身意外伤害保险条款》</a>
+	     <div class="exceeding">
+			<div class="WordSection2">
+				<p class="MsoNormal" align="left">
+					第二条
+				</p>
+				<p class="MsoNormal" align="left">
+					被保险人应为身体健康、能正常工作或正常生活的自然人。任何情形下，本保险不承保任何国
+				</p>
+			</div>
+			<br />
+			<p class="MsoNormal" align="left">
+				家或国际组织认定的恐怖分子或恐怖组织成员，或非法从事毒品、核武器、生物或化学武器交易人员。
+			</p>
+			<p class="MsoNormal" align="left">
+				第三条 投保人应为具有完全民事行为能力的被保险人本人，或对被保险人有保险利益的其他人。
+			</p>
+			<p class="MsoNormal" align="left" >
+				第四条 本保险合同的受益人包括：
+			</p>
+			<p class="MsoNormal" align="left">
+				（一）身故保险金受益人
+			</p>
+			<p class="MsoNormal" align="left" >
+				订立本保险合同时，被保险人或投保人可指定一人或数人为身故保险金受益人。身故保险金受益人为数人
+			</p>
+			<p class="MsoNormal" align="left">
+				时，应确定其受益顺序和受益份额；未确定受益份额的，各身故保险金受益人按照相等份额享有受益权。投保
+			</p>
+			<p class="MsoNormal" align="left" >
+				人指定受益人时须经被保险人同意。
+			</p>
+			<p class="MsoNormal" align="left">
+				被保险人死亡后，有下列情形之一的，保险金作为被保险人的遗产，由保险人依照《中华人民共和国继承
+			</p>
+			<p class="MsoNormal" align="left">
+				法》的规定履行给付保险金的义务：
+			</p>
+			<p class="MsoNormal" align="left" >
+				1.没有指定受益人，或者受益人指定不明无法确定的；
+			</p>
+			<p class="MsoNormal" align="left" >
+				2.受益人先于被保险人死亡，没有其他受益人的；
+			</p>
+			<p class="MsoNormal" align="left" >
+				3.受益人依法丧失受益权或者放弃受益权，没有其他受益人的。
+			</p>
+			<p class="MsoNormal" align="left">
+				受益人与被保险人在同一事件中死亡，且不能确定死亡先后顺序的，推定受益人死亡在先。
+			</p>
+			<p class="MsoNormal" align="left">
+				投保人为与其有劳动关系的劳动者投保人身保险，不得指定被保险人及其近亲属以外的人为受益人。
+			</p>
+			<p class="MsoNormal" align="left">
+				被保险人或者投保人可以变更受益人并书面通知保险人。保险人收到变更受益人的书面通知后，应当在保
+			</p>
+			<p class="MsoNormal" align="left">
+				险单或者其他保险凭证上批注或者附贴批单。
+			</p>
+	     </div>
+	     <a href="javascript:void(0)"  id="show2">《附加个人意外医疗费用补偿保险条款》</a>
+	     <div>
+	       <p class="MsoNormal" align="left">
+				保险责任
+			</p>
+			<p class="MsoNormal" align="left">
+				第五条 在保险期间内，被保险人因遭受意外伤害导致身故、伤残的，保险人依照下列约定给付保险金，
+			</p>
+			<p class="MsoNormal" align="left">
+				且给付下列各项保险金之和不超过保险单中约定的保险金额：
+			</p>
+			<p class="MsoNormal" align="left">
+				（一）意外身故保险金
+			</p>
+			<p class="MsoNormal" align="left">
+				在保险期间内，若被保险人遭受意外伤害，并自意外伤害发生之日起三百六十五日内因该意外伤害身故
+			</p>
+			<p class="MsoNormal" align="left">
+				的，保险人应按保险单中约定的保险金额给付身故保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				被保险人因遭受意外伤害且自该意外伤害发生之日起下落不明，后经人民法院宣告死亡的，保险人应按保
+			</p>
+			<p class="MsoNormal" align="left" >
+				险金额给付身故保险金；若被保险人被宣告死亡后生还的，保险金受领人应于知道或应当知道被保险人生还后
+			</p>
+			<p class="MsoNormal" align="left" >
+				三十日内将领取的身故保险金无息退还给保险人。
+			</p>
+			<p class="MsoNormal" align="left">
+				若被保险人身故前保险人已按本条第（二）项约定给付了意外伤残保险金，则保险人所应支付的身故保
+			</p>
+			<p class="MsoNormal" align="left" >
+				险金为保险金额扣除已给付意外伤残保险金后的余额。
+			</p>
+			<p class="MsoNormal" align="left" >
+				保险人按上述约定给付身故保险金后，本保险合同随之终止，保险人对该被保险人的保险责任亦终止。
+			</p>
+			<p class="MsoNormal" align="left" >
+				（二）意外伤残保险金
+			</p>
+			<p class="MsoNormal" align="left" >
+				在保险期间内，若被保险人遭受意外伤害，并自意外伤害发生之日起三百六十五日内因该意外伤害造成本
+			</p>
+			<p class="MsoNormal" align="left" >
+				保险合同所附附录《人身保险伤残评定标准（行业标准）》（“《附录》”）所列伤残之一的，保险人按《附录》所
+			</p>
+			<p class="MsoNormal" align="left">
+				列给付比例乘以保险单约定的保险金额给付意外伤残保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				被保险人因同一意外伤害遭受一项以上《附录》所列伤残，且不同伤残项目属于同一肢体或同一器官
+			</p>
+			<p class="MsoNormal" align="left" >
+				时，保险人仅按照比例最高的一项计算并给付意外伤残保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				如被保险人在保险期间内因不同意外事故遭受一项以上《附录》所列伤残，且不同伤残项目属于同一肢
+			</p>
+			<p class="MsoNormal" align="left" >
+				体或同一器官时，若后次伤残等级较严重，则需扣除前次已给付的伤残保险金；若前次伤残等级较严重，则
+			</p>
+			<p class="MsoNormal" align="left">
+				保险人不再给付后次的伤残保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				若该被保险人因同一或不同意外事故遭受《附录》所列一项以上伤残时，我们将给付各项残疾保险金之
+			</p>
+			<p class="MsoNormal" align="left">
+				和，但给付总额不超过保险单中约定的保险金额。
+			</p>
+	     </div>
+	     <a href="javascript:void(0)"  id="show3">《附加个人意外伤害住院补贴保险条款》</a>
+	     <div>
+	       <p class="MsoNormal" align="left">
+				保险责任
+			</p>
+			<p class="MsoNormal" align="left">
+				第五条 在保险期间内，被保险人因遭受意外伤害导致身故、伤残的，保险人依照下列约定给付保险金，
+			</p>
+			<p class="MsoNormal" align="left">
+				且给付下列各项保险金之和不超过保险单中约定的保险金额：
+			</p>
+			<p class="MsoNormal" align="left">
+				（一）意外身故保险金
+			</p>
+			<p class="MsoNormal" align="left">
+				在保险期间内，若被保险人遭受意外伤害，并自意外伤害发生之日起三百六十五日内因该意外伤害身故
+			</p>
+			<p class="MsoNormal" align="left">
+				的，保险人应按保险单中约定的保险金额给付身故保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				被保险人因遭受意外伤害且自该意外伤害发生之日起下落不明，后经人民法院宣告死亡的，保险人应按保
+			</p>
+			<p class="MsoNormal" align="left" >
+				险金额给付身故保险金；若被保险人被宣告死亡后生还的，保险金受领人应于知道或应当知道被保险人生还后
+			</p>
+			<p class="MsoNormal" align="left" >
+				三十日内将领取的身故保险金无息退还给保险人。
+			</p>
+			<p class="MsoNormal" align="left">
+				若被保险人身故前保险人已按本条第（二）项约定给付了意外伤残保险金，则保险人所应支付的身故保
+			</p>
+			<p class="MsoNormal" align="left" >
+				险金为保险金额扣除已给付意外伤残保险金后的余额。
+			</p>
+			<p class="MsoNormal" align="left" >
+				保险人按上述约定给付身故保险金后，本保险合同随之终止，保险人对该被保险人的保险责任亦终止。
+			</p>
+			<p class="MsoNormal" align="left" >
+				（二）意外伤残保险金
+			</p>
+			<p class="MsoNormal" align="left" >
+				在保险期间内，若被保险人遭受意外伤害，并自意外伤害发生之日起三百六十五日内因该意外伤害造成本
+			</p>
+			<p class="MsoNormal" align="left" >
+				保险合同所附附录《人身保险伤残评定标准（行业标准）》（“《附录》”）所列伤残之一的，保险人按《附录》所
+			</p>
+			<p class="MsoNormal" align="left">
+				列给付比例乘以保险单约定的保险金额给付意外伤残保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				被保险人因同一意外伤害遭受一项以上《附录》所列伤残，且不同伤残项目属于同一肢体或同一器官
+			</p>
+			<p class="MsoNormal" align="left" >
+				时，保险人仅按照比例最高的一项计算并给付意外伤残保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				如被保险人在保险期间内因不同意外事故遭受一项以上《附录》所列伤残，且不同伤残项目属于同一肢
+			</p>
+			<p class="MsoNormal" align="left" >
+				体或同一器官时，若后次伤残等级较严重，则需扣除前次已给付的伤残保险金；若前次伤残等级较严重，则
+			</p>
+			<p class="MsoNormal" align="left">
+				保险人不再给付后次的伤残保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				若该被保险人因同一或不同意外事故遭受《附录》所列一项以上伤残时，我们将给付各项残疾保险金之
+			</p>
+			<p class="MsoNormal" align="left">
+				和，但给付总额不超过保险单中约定的保险金额。
+			</p>
+	     </div>
+	     <a href="javascript:void(0)"  id="show4">《扩展社保用药外医疗费用保障保险批单》</a>
+	     <div>
+	       <p class="MsoNormal" align="left">
+				保险责任
+			</p>
+			<p class="MsoNormal" align="left">
+				第五条 在保险期间内，被保险人因遭受意外伤害导致身故、伤残的，保险人依照下列约定给付保险金，
+			</p>
+			<p class="MsoNormal" align="left">
+				且给付下列各项保险金之和不超过保险单中约定的保险金额：
+			</p>
+			<p class="MsoNormal" align="left">
+				（一）意外身故保险金
+			</p>
+			<p class="MsoNormal" align="left">
+				在保险期间内，若被保险人遭受意外伤害，并自意外伤害发生之日起三百六十五日内因该意外伤害身故
+			</p>
+			<p class="MsoNormal" align="left">
+				的，保险人应按保险单中约定的保险金额给付身故保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				被保险人因遭受意外伤害且自该意外伤害发生之日起下落不明，后经人民法院宣告死亡的，保险人应按保
+			</p>
+			<p class="MsoNormal" align="left" >
+				险金额给付身故保险金；若被保险人被宣告死亡后生还的，保险金受领人应于知道或应当知道被保险人生还后
+			</p>
+			<p class="MsoNormal" align="left" >
+				三十日内将领取的身故保险金无息退还给保险人。
+			</p>
+			<p class="MsoNormal" align="left">
+				若被保险人身故前保险人已按本条第（二）项约定给付了意外伤残保险金，则保险人所应支付的身故保
+			</p>
+			<p class="MsoNormal" align="left" >
+				险金为保险金额扣除已给付意外伤残保险金后的余额。
+			</p>
+			<p class="MsoNormal" align="left" >
+				保险人按上述约定给付身故保险金后，本保险合同随之终止，保险人对该被保险人的保险责任亦终止。
+			</p>
+			<p class="MsoNormal" align="left" >
+				（二）意外伤残保险金
+			</p>
+			<p class="MsoNormal" align="left" >
+				在保险期间内，若被保险人遭受意外伤害，并自意外伤害发生之日起三百六十五日内因该意外伤害造成本
+			</p>
+			<p class="MsoNormal" align="left" >
+				保险合同所附附录《人身保险伤残评定标准（行业标准）》（“《附录》”）所列伤残之一的，保险人按《附录》所
+			</p>
+			<p class="MsoNormal" align="left">
+				列给付比例乘以保险单约定的保险金额给付意外伤残保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				被保险人因同一意外伤害遭受一项以上《附录》所列伤残，且不同伤残项目属于同一肢体或同一器官
+			</p>
+			<p class="MsoNormal" align="left" >
+				时，保险人仅按照比例最高的一项计算并给付意外伤残保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				如被保险人在保险期间内因不同意外事故遭受一项以上《附录》所列伤残，且不同伤残项目属于同一肢
+			</p>
+			<p class="MsoNormal" align="left" >
+				体或同一器官时，若后次伤残等级较严重，则需扣除前次已给付的伤残保险金；若前次伤残等级较严重，则
+			</p>
+			<p class="MsoNormal" align="left">
+				保险人不再给付后次的伤残保险金。
+			</p>
+			<p class="MsoNormal" align="left" >
+				若该被保险人因同一或不同意外事故遭受《附录》所列一项以上伤残时，我们将给付各项残疾保险金之
+			</p>
+			<p class="MsoNormal" align="left">
+				和，但给付总额不超过保险单中约定的保险金额。
+			</p>
+	     </div>
+     </div>
+     <a href="javascript:void(0)" class="btn_dialogText">我知道了</a>
+</div>
+
+<div class="dialogText dialogText1">
+  <div>
+     <div style="padding:.2rem;">
+         <p>1.此保险计划仅承保在居住在中国境内（不包含香港，澳门和台湾）满182天以上的人群，外籍人士暂不支持网上投保。</p>
+         <p>2.可投保职业参见<a href="javascript:void(0)" id="biao" style="text-decoration: underline;color:#ea5513">职业类别表</a>。</p>
+         <p>3.被保险人的可保年龄计划A/B为6个月至60周岁，计划C为18-60周岁，计划D为18-55周岁。对于未满18周岁的未成年人的身故保险金额赔付以事故发生时中国保监会规定的未成年人身故保险金额的相应限额为限。（不满10周岁，不得超过人民币20万元；已满10周岁不满18周岁，不得超过人民币50万元）。</p>
+         <p>4.本保险计划A/B/C仅对附录一中所列职业范围的从业人员承担保险责任，且对于投保计划C的人员, 要求其固定月收入不低于人民币8,000元。计划D仅对附录二中所列职业范围的从业人员承担保险责任,且对于投保计划D的人员, 要求其固定月收入不低于人民币15,000元,保险公司保留要求被保险人提供投保时固定收入证明作为索赔必要材料的权利。</p>
+         <p>5.意外医疗及意外住院的境内指定就诊医院北京地区详见<a href="javascript:void(0)" id="fulu" style="text-decoration: underline;color:#ea5513">附录</a>，其它地区限二级及二级以上公立医院。</p>
+         <p>6.本保险不承保在下述国家期间发生的保险事故：伊朗、苏丹、缅甸、古巴、阿富汗、刚果（金）、乍得、海地、伊拉克、索马里、叙利亚叙利亚及其他处于战争状态或已被宣布为紧急状态的国家或地区。</p>
+         <p>7.本保险产品针对同一保险期间每一被保险人限购壹（1）份，多投无效。  </p>
+         <p>8.若被保险人在搭乘公共交通工具、驾驶或乘坐非营运性机动车时发生意外身故及伤残，保险金申请人可以重复申请主保险合同下“意外身故及伤残”保险金。但自驾及乘坐非营性运性机动车意外身故及伤残保障未成年人不适用。</p>
+     </div>
+  </div>
+  <a href="javascript:void(0)" class="btn_dialogText">我知道了</a>
+</div>
+<div class="dialogText dialogText2">
+  <div>
+     <div style="padding:.2rem;">
+         <ul>
+           <li><span class="first">careercode</span><span class="second" style="text-align:center">careername</span><span class="third">careercode</span></li>
+           <li><span class="first">100001</span><span class="second">办公室工作人员、内勤、文职人员</span><span class="third">0001001</span></li>
+           <li><span class="first">100002</span><span class="second">管理人员(不涉及室外现场工作)</span><span class="third">0001005</span></li>
+           <li><span class="first">100003</span><span class="second">会计</span><span class="third">1602002</span></li>
+           <li><span class="first">100004</span><span class="second">针灸师/理疗家</span><span class="third">1001008</span></li>
+           <li><span class="first">100005</span><span class="second">广告代理人</span><span class="third">0902002</span></li>
+           <li><span class="first">100006</span><span class="second">建筑师</span><span class="third">0701001</span></li>
+           <li><span class="first">100007</span><span class="second">艺术家（商业）</span><span class="third">1108009</span></li>
+           <li><span class="first">100008</span><span class="second">美容师/美发师</span><span class="third">1603003</span></li>
+           <li><span class="first">100009</span><span class="second">神职人员/教堂工作人员/宗教人士</span><span class="third">1300001</span></li>
+           <li><span class="first">100010</span><span class="second">学院工作人员（讲师）/学校教师（非体力工作者）</span><span class="third">1201003</span></li>
+           <li><span class="first">100011</span><span class="second">电脑分析人员/程序师/操作员</span><span class="third">2000002</span></li>
+           <li><span class="first">100012</span><span class="second">医生/护士</span><span class="third">1001001</span></li>
+         </ul>
+     </div>
+  </div>
+  <a href="javascript:void(0)" class="btn_dialogText">我知道了</a>
+</div>
+<div class="dialogText dialogText3">
+  <div>
+     <div style="padding:.2rem;">
+         <strong>意外医疗、意外住院境内指定就诊医院</strong>
+         <p>对本保险中的意外医疗和意外住院保险责任，指定北京城八区和外埠二级以上公立医院，以及北京郊县下列22家医院为就诊医院，被保险人在指定就诊医院以外的其他医院发生的医疗费用或住院，我们不承担给付保险金的责任。</p>
+         <p><span class="first">郊区名称</span><span class="second">就诊医院</span></p>
+         <p><span class="first">通州区</span><span class="second">北京市通州区潞河医院、解放军第二六三医院、北京市通州区中医医院</span></p>
+         <p><span class="first">房山区</span><span class="second">北京燕化医院、北京市房山区第一医院、北京市房山区良乡医院</span></p>
+         <p><span class="first">昌平区</span><span class="second">北京市昌平区医院、北京市昌平区中医医院</span></p>
+         <p><span class="first">大兴区</span><span class="second">北京市大兴区人民医院、北京市仁和医院、北京市大兴区中医医院</span></p>
+         <p><span class="first">顺义区</span><span class="second">北京市顺义区医院、中国人民解放军66055部队医院、北京市顺义区中医医院</span></p>
+         <p><span class="first">怀柔区</span><span class="second">北京市怀柔区中医医院、北京市怀柔区第一医院</span></p>
+         <p><span class="first">平谷区</span><span class="second">无</span></p>
+         <p><span class="first">门头沟区</span><span class="second">北京市门头沟区医院、北京市门头沟区中医医院、北京京煤集团总医院</span></p>
+         <p><span class="first">延庆区</span><span class="second">北京市延庆县医院、北京市延庆县中医医院</span></p>
+         <p><span class="first">密云区</span><span class="second">密云县妇幼保健院</span></p>
+     </div>
+  </div>
+  <a href="javascript:void(0)" class="btn_dialogText">我知道了</a>
+</div> 
+<script charset="utf-8" type="text/javascript" src="/static/js/buyConfirm-suLiShi.js"></script>
+-->
+
+<script>
+//getCityList
+getCityList('#select-province',"#select-city-li",'#select-city',"#select-area-li",'#select-area');
+//百万人生C和D才有目前收入 	
+var preHtml = '<li class="clearfix">'
+		+ '<div class="left">目前收入：</div>'
+		+ '<div class="right">'
+		+ '<input type="text" name="income" id="income" required placeholder="请输入目前收入" style="float:left"/>'
+		+ '</div>' + '</li>';
+var proName1 = GetQueryString("proName");
+if (proName1 != "" && proName1 != null) {
+	if (proName1.indexOf("C") > 0) {
+		$("ul.pro-baoren").append(preHtml);
+		$("input#income").addClass("incomeC");
+	} else if (proName1.indexOf("D") > 0) {
+		$(".pro-baoren").append(preHtml);
+		$("input#income").addClass("incomeD");
+	}
+}
+
+// 获取职业列表接口的html共有三级其中无业只有二级
+/*
+ *<li class="clearfix">
+ <div class="left">当前职业：</div>
+ <div class="right">
+     <select name="professionTree" id="professionTree"></select>
+     <i class="icon-down"></i>
+ </div>
+</li>
+<li class="clearfix" id="select-profession-li01" style="display:none">
+ <div class="left"></div>
+ <div class="right">
+     <select name="professionTree01" id="professionTree01"></select>
+     <i class="icon-down"></i>
+ </div>
+</li>
+<li class="clearfix" id="select-profession-li02" style="display:none">
+  <div class="left"></div>
+ <div class="right">
+     <select name="professionTree02" id="professionTree02"></select>
+     <i class="icon-down"></i>
+ </div>
+</li> 
+ */
+
+//getProfessionList   获取职业列表接口的方法     
+// param id1：职业分类的ID
+// param li2：第二级分类 的li-ID
+// param id2：第二级分类 的select-ID
+// param li2：第三级分类 的li-ID
+// param id2：第三级分类 的select-ID
+/*function getProfessionList(id1,li2,id2,li3,id3){
+	$.ajax({
+		url:commonUrl+"/jobList/queryJobListByBatch",
+		type:"get",
+		data:{
+			batch:1479802000245,
+			parentId:0
+		},
+		async:false,
+		dataType:"json",
+		success:function(data){
+			$(id1+' option').remove();  
+	  		$(id1).append("<option value='0' disabled selected>请选择职业</option>");
+	   		for(var i=0;i<data.length;i++){
+	   			var obj=data[i];
+	   			$(id1).append("<option value='"+obj.jobId+"'>"+obj.jobName+"</option>");
+	   		}
+	   		$(id1).mobiscroll().select({
+	   	    	 mode: 'scroller',
+	   	         animate: 'slideup',
+	   	         theme: 'default', 
+	   	         display: 'bottom'
+	   	     });
+	   		$(id1).unbind();
+	   		$(id1).on("change",function(){
+	   			if($(this).val()!="请选择职业"){
+	   				$.ajax({
+	   					url:commonUrl+"/jobList/queryJobListByBatch",
+	   					type:"get",
+	   					async:false,
+	   					data:{
+	   						batch:1479802000245,
+	   						parentId:$(this).val()
+	   					},
+	   					dataType:"json",
+	   					success:function(data){
+	   						$(id2+" option").remove();
+	   						$(id2).append("<option value='0' disabled selected>请选择</option>");
+	   	      	    		for(var i=0;i<data.length;i++){
+	   	      	    			var obj=data[i];
+	   	      	    		$(id2).append("<option value='"+obj.jobId+"'>"+obj.jobName+"</option>");
+	   	      	    		}
+	   	      	    	    $(li2).show();
+	   	      	    	    $(id2).mobiscroll().select({
+	   				     	  mode: 'scroller',
+	   				          animate: 'slideup',
+	   				          theme: 'default', 
+	   				          display: 'bottom'
+	   				     });
+	   	      	    	$(id2).unbind();
+	   	      	    	$(id2).on("change",function(){
+			   	 	   			if($(this).val()!="请选择职业"){
+			   	 	   				$.ajax({
+			   	 	   					url:commonUrl+"/jobList/queryJobListByBatch",
+			   	 	   					type:"get",
+			   	 	   					async:false,
+			   	 	   					data:{
+			   	 	   						batch:1479802000245,
+			   	 	   						parentId:$(this).val()
+			   	 	   					},
+			   	 	   					dataType:"json",
+			   	 	   					success:function(data){
+			   	 	   						$(id3+" option").remove();
+			   	 	   						$(id3).append("<option value='0' disabled selected>请选择</option>");
+			   	 	   	      	    		for(var i=0;i<data.length;i++){
+			   	 	   	      	    			var obj=data[i];
+			   	 	   	      	    		$(id3).append("<option value='"+obj.jobId+"'>"+obj.jobName+"</option>");
+			   	 	   	      	    		}
+			   	 	   	      	    	    $(li3).show();
+			   	 	   	      	    	    $(id3).mobiscroll().select({
+			   	 	   				     	  mode: 'scroller',
+			   	 	   				          animate: 'slideup',
+			   	 	   				          theme: 'default', 
+			   	 	   				          display: 'bottom'
+			   	 	   				     });
+			   	 	   					},
+			   	 	   					error:function(){
+			   	 	   				        $(li3).hide();
+			   	 	   					}
+			   	 	   				})
+			   	 	   			}
+			   	 	   		})
+	   	      	    	    
+	   					},
+	   					error:function(){}
+	   				})
+	   			}
+	   		})
+		},
+        error:function(){}
+	})
+}*/
+</script>
+</body>
+</html>

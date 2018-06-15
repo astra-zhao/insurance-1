@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>确认订单</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+ 	<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+</head>
+<body>
+ <div class="wrap detail">
+     <div class="header">
+         <div class="left back"></div>
+         <h2>确认订单</h2>
+     </div>
+     <div class="orderConfirm-contener">
+         <div>
+           <p class="tip-orderConfirm right">请您确认您的订单信息，确认无误后确认购买。</p>
+           <div class="order-infor">
+               <div class="title-orderConfirm clearfix">
+                   <i class="icon icon-info left" style="width:.44rem;"></i>
+                   <span class="left">产品信息</span>
+               </div>
+               <ul>
+                   <li class="clearfix">
+                       <span  class="left">产品名称：</span>
+                       <span  class="left" id="proName"> </span>
+                   </li>
+                   <li class="clearfix">
+                       <span  class="left">保障份额：</span>
+                       <span  class="left" id="proCount"></span>
+                   </li>
+                   <li class="clearfix" id="priceLi">
+                       <span  class="left">合计保费：</span>
+                       <span  class="left" id="price"></span>
+                   </li>
+               </ul>
+               <div class="img-shadow"></div>
+
+               <div class="title-orderConfirm clearfix">
+                   <i class="icon icon-toubaoren left"></i>
+                   <span class="left">投保人信息</span>
+               </div>
+               <ul id="baorenBox"></ul>
+               <div class="img-shadow"></div>
+
+               <div class="title-orderConfirm clearfix" id="beiTitleOrderConfirm" style="display:none">
+                   <i class="icon icon-toubaoren left"></i>
+                   <span class="left">被保人信息</span>
+               </div>
+               <div class="beibaoren"></div>
+               <div class="title-orderConfirm clearfix">
+                   <i class="icon icon-time left"></i>
+                   <span class="left">起保时间</span>
+               </div>
+               <ul>
+                   <li class="clearfix">
+                       <span  class="left">起保时间：</span>
+                       <span  class="left" id="proStartDate"></span>
+                   </li>
+                   <li class="clearfix">
+                       <span  class="left">结束日期：</span>
+                       <span  class="left" id="proEndDate"></span>
+                   </li>
+                   <li class="clearfix">
+                       <span  class="left">受益人：</span>
+                       <span  class="left" id="shouYiRen">法定受益人</span>
+                   </li>
+               </ul>
+               <div class="img-shadow"></div>
+
+               <div class="text-orderConfirm">
+                   <p>本人已了解并接受保险公司关于本产品的重要告知、详细条款（特别注意责任免除）、犹豫期（仅限长期险）、费用扣除、保险单现金价值等在内的重要事项。明确并接受本产品的客户告知书以及承保机构、承保、保全变更、退保和理赔办理方式及退保、理赔金支付方式。</p>
+               </div>
+               <p class="check-box clearfix">
+                   <i class="icon icon-check left" data-check="false"></i>
+                   <span class="read">我接受投保声明</span>
+               </p>
+
+           </div>
+         </div>
+     </div>
+
+     <a href="javascript:void(0)" class="block btn-noconfirm" style="width:100%" data-hasOrder="false">确认订单</a>
+     
+
+<div class="bgDialog"></div>
+<div class="dialog orderConfirm">
+    <div class="head clearfix" style="border:0">
+        <span class="left">x</span>
+        <p>确认提交订单</p>
+    </div>
+    <p class="clearfix" style="padding:.1rem 0">
+        <i class="icon icon-ok left"></i>
+        <span class="right">请确保您已阅读投保声明中的内容并同意接受</span>
+    </p>
+    <div class="btns">
+        <span class="left">取消</span>
+        <span class="left">确定</span>
+    </div>
+</div>
+<div class="bgPop"></div>
+<div class="pop">
+    <strong>提示</strong>
+    <div></div>
+    <div>
+       <span class="default">确定</span>
+    </div>
+</div>
+
+
+</div>
+
+ <script charset="utf-8" type="text/javascript" src="/static/js/iscroll.js"></script>
+ <script charset="utf-8" type="text/javascript" src="/static/js/orderConfirm-dajiang.js"></script>
+</body>
+</html>

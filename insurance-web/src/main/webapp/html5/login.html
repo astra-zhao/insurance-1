@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+ <div class="wrap">
+     <div class="header">
+         <div class="left back"></div>
+         <h2>登录</h2>
+     </div>
+     <div class="loginbox">
+         <div class="btns">
+             <ul class="clearfix">
+                 <li class="active">普通登录</li>
+                 <li>手机验证码登录</li>
+             </ul>
+         </div>
+
+         <div class="logincon">
+             <div class="active">
+                 <div class="inputbox">
+                     <i class="icon icon-user left"></i>
+                     <input type="text" placeholder="请输入用户名"  id="login-username"/>
+                 </div>
+                 <div class="inputbox">
+                     <i class="icon icon-password left"></i>
+                     <input type="password" placeholder="请输入6-16位密码"  id="login-pass"/>
+                 </div>
+                 <button type="button" id="login-btn-nocode">登录</button>
+             </div>
+             <div>
+                 <div class="inputbox">
+                     <i class="icon icon-phone left"></i>
+                     <input type="text" placeholder="请输入手机号" id="login-username2"/>
+                 </div>
+                 <div class="clearfix">
+                     <div class="inputbox inputbox-code left">
+                         <i class="icon icon-code left"></i>
+                         <input type="text" placeholder="请输入验证码" required="required" id="loginCode"/>
+                     </div>
+                     <a href="javascript:void(0)" class="getLoginCode right" id="getLoginCode">获取验证码</a>
+                 </div>
+
+                 <button type="button" id="login-btn">登录</button>
+             </div>
+             <p class="logincon-bottom clearfix">
+                 <span class="left" id="btn-regist">免费注册</span>
+                 <a href="forgetPassword.html"  href="javascript:void(0)" class="right" id="btn-forget">忘记密码？</a>
+             </p>
+         </div>
+     </div>
+
+     <!--regist-->
+     <div class="bgDialog"></div>
+     <div class="bgPop"></div>
+     <div class="bgError"></div>
+     <div class="dialog regist" >
+         <div class="head clearfix">
+             <span class="left">x</span>
+             <p>注册</p>
+         </div>
+            <form>
+             <ul>
+                 <li style="border:0;"><input type="text" placeholder="请输入用户名" id="regist-username"/></li>
+                 <li><input type="password" placeholder="请输入密码" id="regist-pass"/></li>
+                 <li><input type="password" placeholder="确认密码" id="regist-pass2"/></li>
+                 <li><input type="tel" placeholder="请输入手机号" id="regist-phone"/></li>
+                 <li>
+                     <input type="text" placeholder="请输入验证码" class="left registCode" maxlength="6" />
+                     <a href="javascript:void(0)" class="right getRegistCode" id="getRegistCode">获取验证码</a>
+                 </li>
+                 <li>
+                     <button type="button">注册</button>
+                 </li>
+             </ul>
+          </form>
+     </div>
+
+     <div class="pop" >
+         <strong>提示</strong>
+         <div></div>
+         <div>
+            <span class="default">确定</span>
+         </div>
+     </div>
+ </div>
+
+
+ <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+ <script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+ <script charset="utf-8" type="text/javascript" src="/static/js/regCheck.js"></script>
+ <script charset="utf-8" type="text/javascript" src="/static/js/login.js"></script>
+</body>
+</html>

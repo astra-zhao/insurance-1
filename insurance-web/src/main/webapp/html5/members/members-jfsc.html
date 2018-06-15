@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>积分商城</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/dropload.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/iscroll.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/dropload.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+    <script type="text/javascript" src="/static/js/members-jfsc.js"></script>
+<script charset="utf-8" type="text/javascript">
+  userLoginState()
+</script>
+</head>
+<body>
+<div class="wrap members">
+    <div class="header">
+        <div class="left back"></div>
+        <h2>积分商城</h2>
+    </div>
+    <div style="height:.54rem;">
+        <div class="current-jifen right">
+            <i class="icon icon-jifen left"></i>
+            <span>积分：<i class="integral" style="font-style: normal;">0</i></span>
+        </div>
+    </div>
+
+    <ul class="members-jfsc-tab">
+        <li class="active">
+            <i class="icon icon-jifensc left"></i>
+            <span>兑换商品</span>
+        </li>
+        <li>
+            <i class="icon icon-jifendh left"></i>
+            <span>我的兑换</span>
+        </li>
+    </ul>
+
+    <div class="members-jfsc-con">
+        <div class="active box01 clearfix">
+           <div class="clearfix">
+               <div id="list01"></div>
+           </div>
+        </div>
+
+        <div class="box02 clearfix" style="width:100%;margin-top:-.6rem">
+           <div>
+              <!-- <div id="pullDown">
+			     <span class="pullDownIcon"></span><span class="pullDownLabel">下拉刷新...</span>
+		      </div> -->
+              <div id="list"></div>
+              <!-- <div id="pullUp">
+			     <span class="pullUpIcon"></span><span class="pullUpLabel">上拉刷新...</span>
+		      </div> -->
+           </div>
+            
+        </div>
+
+    </div>
+    
+<div class="bgPop"></div>
+<div class="pop">
+    <strong>提示</strong>
+    <div></div>
+    <div>
+        <span class="default">确定</span>
+    </div>
+</div>    
+</div>
+
+
+</body>
+</html>

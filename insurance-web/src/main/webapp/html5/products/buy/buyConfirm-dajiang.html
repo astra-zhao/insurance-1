@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>产品购买</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" href="/static/css/mobiscroll.2.13.2.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/mobiscroll.2.13.2.js"></script>
+	<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+<style type="text/css">
+  .dialogText.dialogText1 p{
+     line-height:1.5em;
+     margin-bottom:.1rem;
+  }
+  .dialogText0 a+div{display:none}
+  .dialogText0>div a{
+      display:block;
+      padding:.1rem 0;
+      padding-left:.1rem;
+      font-size:.2rem;
+      color:#000;
+      text-decoration: underline
+  }
+  .dialogText2 ul li{
+     min-height:.2rem;
+     margin-bottom:.1rem;
+ }
+  .dialogText2 ul li span,.dialogText3 span{display:inline-block;}
+  .dialogText2 ul span.first{width:20%;line-height:.2rem}
+  .dialogText2 ul span.second{width:60%}
+  .dialogText2 ul span.third{width:20%;line-height:.2rem}
+  .dialogText3 p{margin-bottom:.1rem;}
+  .dialogText3 span.first{width:20%;}
+  .dialogText3 span.second{width:80%;}
+  #professionTree_dummy{
+    padding-right:.41rem;
+  }
+  .center{text-align: center}
+  .getRegistCode-dajiang{
+     display:inline-block;
+     height:.48rem;
+     line-height:.48rem;
+     width:1.7rem;
+     font-size:.2rem
+  }
+  #viewBarcode:active{text-decoration: underline;}
+  #personBtn,#companyBtn{
+    display: inline-block;
+    height: .48rem;
+    line-height: .48rem;
+    width: 1.7rem;
+    font-size: .2rem;
+    text-align: center;
+    color: #fff;
+    background:#2B93A5;
+  }
+  
+</style>
+</head>
+<body>
+ <div class="wrap detail">
+     <div class="header">
+         <div class="left back"></div>
+         <h2>产品购买</h2>
+     </div>
+    <div class="buyConfirm-contener">
+         <div>
+             <ul class="section pro-guding">
+                <li class="clearfix">
+                    <div class="left">产品名称：</div>
+                    <div class="right">
+                        <input type="text" name="proName" id="proName" value="无人驾驶飞行器责任保险" readonly="readonly"/>
+                    </div>
+                </li>
+                 <li class="clearfix">
+                     <div class="left">投保日期：</div>
+                    <div class="right clearfix">
+                        <input type="text" name="startDate" id="startDate" value=""  placeholder="请选择起保日期" />
+                    </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">截止日期：</div>
+                    <div class="right">
+                        <input type="text" name="closingDate" id="closingDate" value="" readonly="readonly" />
+                    </div>
+                 </li>
+             </ul>
+
+             <ul class="section pro-baoren">
+                 <li class="clearfix">
+                     <div class="left">客户类型：</div>
+                    <div class="right right-position">
+			           <select id="customType" name="customType">
+			              <option value="0">企业用户</option>
+			              <option value="1">个人用户</option>
+			           </select>
+			           <i class="icon-down"></i>
+                    </div>
+                 </li>
+                 <li class="clearfix">
+                       <div class="left">投保人姓名：</div>
+                    <div class="right">
+                       <input type="text" name="companyName" id="companyName" placeholder="请输入投保人姓名"/>
+                    </div>
+                 </li>
+                 <div id="companyBox"  style="display:block">
+	                 <li class="clearfix">
+	                     <div class="left">证件类型：</div>
+	                    <div class="right right-position">
+	                       <select id="certificateType" name="certificateType">
+				              <option value="1">营业执照</option>
+				              <option value="2">税务登记证</option>
+				              <option value="3">组织机构代码证</option>
+				              <option value="4">社会统一信用代码</option>
+				           </select>
+				           <i class="icon-down"></i>
+	                    </div>
+	                 </li>
+	                 <li class="clearfix">
+	                     <div class="left">证件号码：</div>
+	                    <div class="right">
+	                        <input type="text" name="credentials" id="credentials" placeholder="请输入证件号码"/>
+	                        <p>
+	                            <i class="icon icon-bao"></i>
+	                            <span>您的信息安全由中国人寿财产保险股份有限公司承保，请放心填写</span>
+	                        </p>
+	                    </div>
+	                 </li>
+	                 <li class="clearfix">
+	                     <div class="left">企业联系人：</div>
+	                     <div class="right" >
+	                        <input type="text" name="linkman" id="linkman" placeholder="请输入企业联系人名称"/>
+	                     </div>
+	                 </li>
+	                 <li class="clearfix">
+	                     <div class="left" style="line-height:1.2em">联系人手机号：</div>
+	                     <div class="right">
+	                         <input type="text" name="phone" id="phone" placeholder="请输入联系人手机号"/>
+	                     </div>
+	                 </li>
+	                 <div id="companyCodeLi" style="display:none" >
+	                    <li class="clearfix">
+		                     <div class="left">手机验证码：</div>
+		                     <div class="right">
+		                         <input type="text" name="codeCompany" id="codeCompany" placeholder="验证码" style="width:1.6rem"/>
+		                         <a href="javascript:void(0)" class="getRegistCode getRegistCode-dajiang" id="getRegistCodeCompany">获取验证码</a>
+		                     </div>
+		                 </li>
+		                 <li class="clearfix">
+		                     <div class="left">验证手机：</div>
+		                     <div class="right">
+		                         <button type="button" id="companyBtn">验证手机</button>
+		                     </div>
+		                 </li>
+	                 </div>
+                 </div>
+                 
+                 <div id="personBox" style="display:none">
+                     <li class="clearfix">
+	                     <div class="left" >投保人证件类型：</div>
+	                     <div class="right">
+	                         <input type="text" name="certType" id="certType"  data-tag="0" value="身份证" readonly="readonly" class="background"/>
+	                     </div>
+	                 </li>
+	                 <li class="clearfix">
+	                     <div class="left" >投保人身份证号：</div>
+	                     <div class="right">
+	                         <input type="text" name="certCode" id="certCode"  placeholder="请输入投保人身份证号" />
+	                     </div>
+	                 </li>
+	                 <li class="clearfix">
+	                     <div class="left" >投保人手机号：</div>
+	                     <div class="right">
+	                         <input type="text" name="phonePerson" id="phonePerson"  placeholder="请输入投保人手机号" />
+	                     </div>
+	                 </li>
+	                 <div id="personCodeLi" style="display:none" >
+		                 <li class="clearfix">
+		                     <div class="left">手机验证码：</div>
+		                     <div class="right">
+		                         <input type="text" name="codePerson" id="codePerson" placeholder="验证码" style="width:1.6rem"/>
+		                         <a href="javascript:void(0)" class="getRegistCode getRegistCode-dajiang" id="getRegistCodePerson">获取验证码</a>
+		                     </div>
+		                 </li>
+		                 <li class="clearfix">
+		                     <div class="left">验证手机：</div>
+		                     <div class="right">
+		                         <button type="button" id="personBtn">验证手机</button>
+		                     </div>
+		                 </li>
+	                 </div>
+	                 <li class="clearfix">
+                       <div class="left">是否为本人：</div>
+	                    <div class="right" style="padding-top:.1rem">
+	                       <input type="radio" name="isBenren" value="yes" class="input-isBenren"/>&nbsp;是
+	                       <input type="radio" name="isBenren" value="no"  class="input-isBenren"/>&nbsp;否
+	                    </div>
+	                 </li>
+	                 <li class="clearfix">
+	                     <div class="left">被保人姓名：</div>
+	                     <div class="right">
+	                         <input type="text" name="beibaoName" id="beibaoName"  placeholder="请输入被保人姓名" />
+	                     </div>
+	                 </li>
+	                 <li class="clearfix">
+	                     <div class="left" >被保人身份证号：</div>
+	                     <div class="right">
+	                         <input type="text" name="beibaoCertCode" id="beibaoCertCode"  placeholder="请输入被保险人身份证号" />
+	                     </div>
+	                 </li>
+	                 <li class="clearfix">
+	                     <div class="left" >被保人手机号：</div>
+	                     <div class="right">
+	                         <input type="text" name="beibaoPhone" id="beibaoPhone"  placeholder="请输入 被保险人手机号码" />
+	                     </div>
+	                 </li>
+                 </div>
+                 <li class="clearfix">
+                     <div class="left">通讯地址：</div>
+                     <div class="right right-position">
+                         <select name="select-province" id="select-province">
+                            <option value="请选择">请选择</option>
+                         </select>
+                         <i class="icon-down"></i>
+                     </div>
+                 </li>
+                 <li class="clearfix" id="select-city-li" style="display:none">
+                     <div class="left"></div>
+                     <div class="right right-position">
+                         <select name="select-city" id="select-city">
+                            <option value="请选择">请选择</option>
+                         </select>
+                         <i class="icon-down"></i>
+                     </div>
+                 </li>
+                 <li class="clearfix" id="select-area-li" style="display:none">
+                     <div class="left"></div>
+                     <div class="right right-position">
+                         <select name="select-area" id="select-area">
+                           <option value="请选择">请选择</option>
+                         </select>
+                         <i class="icon-down"></i>
+                     </div>
+                 </li>
+                 <li class="clearfix">
+                     <div class="left">具体地址：</div>
+                     <div class="right">
+                         <textarea  name="area" id="area" style="width:3.34rem;height:1rem;box-sizing:border-box;padding:.1rem;"></textarea>
+                     </div>
+                 </li>
+               </ul>  
+                
+             <div class="addBbr-box">
+                 <ul class="section addBbr">
+                   <div class="cleafix">
+                     <span class="left">产品属性</span>
+                   </div>
+                    <li class="clearfix">
+                         <div class="left" >品牌：</div>
+	                     <div class="right">
+	                         <input type="text" name="pinpai" id="pinpai"  value="大疆创新" readonly="readonly" class="background"/>
+	                     </div>
+                    </li>
+                    <li class="clearfix">
+                         <div class="left" >型号：</div>
+	                     <div class="right">
+	                         <input type="text" name="xinghao" id="xinghao"  value="MG-1" readonly="readonly" class="background"/>
+	                     </div>
+                    </li>
+                    <li class="clearfix">
+                         <div class="left" >购买份数：</div>
+	                     <div class="right right-position">
+	                         <select name="insuranceNumber" id="insuranceNumber">
+	                            <option value="1">1</option>
+	                            <option value="2">2</option>
+	                            <option value="3">3</option>
+	                            <option value="4">4</option>
+	                            <option value="5">5</option>
+	                         </select>
+	                         <i class="icon-down"></i>
+	                     </div>
+                    </li>
+                    <li class="clearfix">
+                         <div class="left" >序列号1：</div>
+	                     <div class="right">
+	                         <input type="text" name="SNCode1" id="SNCode1" style="float:left" class="inputSN"/>
+	                         <i class="icon-minus" id="iconMinusFirst"></i>
+	                     </div>
+                    </li>
+                    <li class="clearfix" id="viewBarcodeLi" style="line-height:.5rem">
+                         <div class="left" >添加序列号：</div>
+	                     <div class="right">
+	                         <i class="icon-add"></i>
+	                     </div>
+                    </li>
+                    <li class="clearfix" id="viewBarcodeLi" style="line-height:.5rem">
+                         <div class="left" ></div>
+	                     <div class="right">
+	                         <a href="javascript:void(0)" id="viewBarcode" style="color:#f27638">序列号贴于外箱，点击查看参考图片</a>
+	                     </div>
+                    </li>
+                 </ul>
+             </div>
+             <ul class="section money" style="margin-top:.3rem">
+                 <li>
+                     <div>
+                         <span class="left">¥</span>
+                         <span class="left" id="moneys"></span>
+                     </div>
+                 </li>
+             </ul>
+
+              <p class="check-box clearfix">
+       <i class="icon icon-check left" data-check="false"></i>
+       <span class="read">本人已阅读并同意<a href="javascript:void(0)" id="tiaokuan">投保条款</a>和<a href="javascript:void(0)" id="xuzhi">投保须知</a></span>
+     </p>
+         </div>
+     </div>
+
+     <a href="javascript:void(0)" class="block btn-noconfirm" style="width:100%">确认购买</a>
+     
+<div class="bgDialog"></div>
+<div class="dialog orderConfirm dialog-tip">
+    <div class="head clearfix" style="border:0">
+        <span class="left">x</span>
+        <p>确认提交订单</p>
+    </div>
+    <p class="clearfix" style="padding:.1rem 0">
+        <i class="icon icon-ok left"></i>
+        <span class="right">请确保您已阅读投保声明中的内容并同意接受</span>
+    </p>
+    <div class="btns">
+        <span class="left">取消</span>
+        <span class="left">确定</span>
+    </div>
+</div>
+<div class="bgPop"></div>
+<div class="pop" >
+    <strong>提示</strong>
+    <div></div>
+    <div>
+       <span class="default">确定</span>
+    </div>
+</div>
+<div class="bgDialog"></div>
+<div class="bgDialogExceeding"></div>
+<div class="dialog orderConfirm dialog-remove">
+     <div class="head clearfix" style="border:0">
+        <p>删除被保人</p>
+    </div>
+    <p style="padding:.1rem 0 .3rem;text-align: center;font-size:14px;color:#ea5513">
+                      确定要删除此被保人?
+    </p>
+    <div class="btns">
+        <span class="left">取消</span>
+        <span class="left">确定</span>
+    </div>
+</div>
+</div>
+<div class="bgText"></div>
+<div class="dialogText dialogText0">
+  <strong class="title">投保条款</strong>
+  <div>
+     <div>
+         <p class="MsoNormal" align="center" style="text-align:center;">
+	<b>中国人寿财产保险股份有限公司<span></span></b>
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>无人驾驶飞行器责任保险条款</b>
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	&nbsp;
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>总则</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第一条 </b>本保险合同由保险条款、投保单、保险单、保险凭证以及批单组成。凡涉及本保险合同的约定，均应采用书面形式。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第二条 </b>凡年满<span>18</span>周岁至<span>70</span>周岁的具有完全民事行为能力的自然人，及依法设立的企事业单位、社会团体、个体工商户及其他经济组织，均可投保本保险并作为本保险合同的被保险人。<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第三条 </b>本保险合同中的无人驾驶飞行器是指在本保险合同中载明的，符合法律法规及相关质量标准的，能飞离地面在空中飞行并可利用无线电遥控设备和自备的程序控制装置操控的，供日常娱乐、竞赛或生产作业使用的不载人小型器械飞行物，以下简称“保险飞行器”。<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第四条</b> 本保险合同中的第三者是指因保险飞行器发生意外事故遭受人身伤亡或财产直接损毁的人，<b>但不包括保险飞行器的操控人、被保险人。</b><b></b>
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>保险责任</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第五条 </b>在保险期间内，被保险人在中国境内（不包括港澳台地区法律）使用、操控飞行器过程中发生意外事故，致使第三者遭受人身伤亡或财产直接损毁，依照中华人民共和国法律（不包括港澳台地区法律）应由被保险人承担的经济赔偿责任，保险人按照本保险合同的约定在保险单载明的责任限额内负责赔偿。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第六条 </b>发生保险事故后，被保险人以降低或减少其对索赔人的赔偿责任为目的且事先经保险人书面同意的仲裁、诉讼费用及律师费用（以下简称“法律费用”），保险人也负责赔偿。<b>&nbsp;</b>
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>责任免除</b>
+</p>
+<p class="MsoPlainText" style="text-indent:21.1pt;">
+	<b>第七条 下列情形下，无论任何原因造成的人身伤亡、财产损失和费用，保险人均不负责赔偿：<span></span></b>
+</p>
+<p class="MsoPlainText" style="text-indent:21.1pt;">
+	<b>（一）</b><b>违反中国《民用航空使用空域办法》及相关法律法规规定使用保险飞行器；<span></span></b>
+</p>
+<p class="MsoPlainText" style="text-indent:21.1pt;">
+	<b>（二）利用保险飞行器从事违法或违规活动；<span></span></b>
+</p>
+<p class="MsoPlainText" style="text-indent:21.1pt;">
+	<b>（三）</b><b>保险飞行器使用期限已届满；<span></span></b>
+</p>
+<p class="MsoPlainText" style="text-indent:21.1pt;">
+	<b>（四）被保险人未对保险飞行器受损部件进行更换；<span></span></b>
+</p>
+<p class="MsoPlainText" style="text-indent:21.1pt;">
+	<b>（五）在禁飞区域使用飞行器；<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:20.65pt;">
+	<b>（六）未按照操控规范或指引的要求，以合理方式使用、操控飞行器；<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:20.65pt;">
+	<b>（七）在未达到产品说明书所要求的飞行环境（包括但不限于气象、水文环境）下使用保险、操控飞行器；<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:20.65pt;">
+	<b>（八）造成事故的飞行器并非本保险合同载明的保险飞行器；<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:20.65pt;">
+	<b>（九）保险飞行器存在设计、制造或安装错误、铸造和原材料缺陷或其他产品质量问题。<span></span></b>
+</p>
+<p class="MsoPlainText" style="text-indent:21.1pt;">
+	<b>第八条 下列原因造成的损失、费用和责任，保险人不负责赔偿：</b><span></span>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（一）</b><b>操控人饮酒、吸食或注射毒品、服用国家管制的精神药品或者麻醉药品后使用、操控被保险飞行器；<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（二）</b><b>被保险人明知飞行器存在故障或问题仍使用、操控保险飞行器；<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（三）</b><b>保险飞行器被转让、改装、加装或改变使用性质等，被保险人、受让人未及时通知保险人，且因转让、改装、加装或改变使用性质等导致保险飞行器危险程度显著增加；<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（四）</b><b>被保险人或操控人的故意或重大过失行为；<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（五）</b><b>战争、类似战争行为、敌对行为、武装冲突、恐怖活动、谋反、政变；<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（六）</b><b>罢工、暴动、民众骚乱或恶意行为。<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>第九条 下列损失、费用和责任，保险人不负责赔偿。<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（一）</b><b>任何形式的间接损失、精神损害赔偿；<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（二）</b><b>行政罚款、刑事罚金或违约金；<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（三）</b><b>根据法律或合同约定应由供货方、制造人、安装人或修理人承担的费用或责任；<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（四）</b><b>保险飞行器的自身损失及费用；<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（五）</b><b>因任何原因造成移动设备的自身财产损失；<span></span></b>
+</p>
+<p class="MsoNormal" style="margin-left:0cm;text-indent:21.1pt;">
+	<b>（六）</b><b>本保险合同载明的免赔额或按照本保险合同载明的免赔率计算的免赔额。<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>第十条 其他不属于本保险合同保险责任范围的一切损失、费用和责任，保险人不负责赔偿。<span></span></b>
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>保险期间</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第十一条<span>&nbsp;</span></b>保险期间由投保人与保险人在订立保险合同时协商确定，以保险单载明的起讫时间为准，最长不超过一年。<span></span>
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;">
+	<b>责任限额</b><b>与免赔额（率）</b><b></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>第</b><b>十二</b><b>条 </b>责任限额包括累计责任限额、每次事故责任限额、每次事故每人责任限额、每次事故每人人身伤亡责任限额和每次事故每人财产损失责任限额，由投保人和保险人在订立保险合同时协商确定，并在保险单中载明。<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	累计责任限额是指保险人在保险期限内就所有独立索赔所需向被保险人承担的赔偿金额合计的最高额度。<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	每次事故责任限额是指保险人就每一独立索赔需向被保险人承担赔偿金额的最高额度。<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第十三</b><b>条</b> 每次事故免赔额（率）由投保人与保险人在订立保险合同时协商确定，并在保险单中载明。<b>&nbsp;</b>
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>保险人义务</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>第十</b><b>四</b><b>条 </b>订立本保险合同时，采用保险人提供的格式条款的，保险人向投保人提供的投保单应当附格式条款，保险人应当向投保人说明本保险合同的内容。对本保险合同中免除保险人责任的条款，保险人在订立保险合同时应当在投保单、保险单或者其他保险凭证上作出足以引起投保人注意的提示，并对该条款的内容以书面或者口头形式向投保人作出明确说明；未作提示或者明确说明的，该条款不产生效力。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第十五条 </b>本保险合同成立后，保险人应当及时向投保人签发保险单或其他保险凭证。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第十六条 </b>保险人依据本保险条款第二十条的约定取得的保险合同解除权，自保险人知道有解除事由之日起，超过三十日不行使而消灭；发生保险事故的，保险人应当承担赔偿责任。
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	保险人在保险合同订立时已经知道投保人未如实告知的情况的，保险人不得解除保险合同；发生保险事故的，保险人应当承担赔偿责任。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第十七条</b> 保险事故发生后，保险人依据本保险条款第二十七条的约定认为投保人、被保险人提供的有关索赔的证明和资料不完整的，应当及时一次性通知投保人、被保险人补充提供。<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第十八条 </b>保险人收到被保险人的赔偿请求后，应当及时就是否属于保险责任作出核定，并将核定结果通知被保险人。情形复杂的，保险人在收到被保险人的赔偿请求后三十日内未能核定保险责任的，保险人与被保险人根据实际情形商议合理期间，保险人在商定的期间内作出核定结果并通知被保险人。<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	对属于保险责任的，在与被保险人达成有关赔偿金额的协议后十日内，履行赔偿义务。本保险合同对赔偿保险金的期限有约定的，保险人应当按照约定履行赔偿保险金的义务。
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	保险人依照前款的约定作出核定后，对不属于保险责任的，应当自作出核定之日起三日内向被保险人发出拒绝赔偿保险金通知书，并说明理由。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第十九条<span>&nbsp;</span></b>保险人自收到赔偿保险金的请求和有关证明、资料之日起六十日内，对其赔偿保险金的数额不能确定的，应当根据已有证明和资料可以确定的数额先予支付；保险人最终确定赔偿的数额后，应当支付相应的差额。
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>投保人、被保险人义务</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第二十条 </b>订立保险合同，保险人就保险标的或被保险人的有关情况提出询问的，投保人应当如实告知，并如实填写投保单。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>投保人故意或者因重大过失未履行前款约定的如实告知义务，足以影响保险人决定是否同意承保或者提高保险费率的，保险人有权解除保险合同。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>投保人故意不履行如实告知义务的，保险人对于保险合同解除前发生的保险事故，不承担赔偿责任，并不退还保险费。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>投保人因重大过失未履行如实告知义务，对保险事故的发生有严重影响的，保险人对于保险合同解除前发生的保险事故，不承担赔偿责任，但应当退还保险费。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第二十一条</b> 除另有约定外，投保人应在保险合同成立时交清保险费。<b>保险费交清前发生的保险事故，保险人不承担赔偿责任。<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>第</b><b>二十二</b><b>条 </b>被保险人应严格遵守国家及政府有关部门制定的其他相关法律、法规及规定，加强管理，采取合理的预防措施，尽力避免或减少责任事故的发生。<b><span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	保险人可以对被保险人遵守前款约定的情况进行检查，向投保人、被保险人提出消除不安全因素和隐患的书面建议，投保人、被保险人应该认真付诸实施。<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>投保人、被保险人未按照约定履行上述安全义务的，保险人有权要求增加保险费或者解除保险合同。<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>被保险人未遵守有关法律法规，导致保险事故发生或保险损失扩大的，保险人对此损失或损失的扩大部分不承担赔偿责任。</b><b></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第二十三条 </b>在保险期间内，如发生足以影响保险人决定是否继续承保或是否增加保险费的保险合同重要事项变更，被保险人应及时书面通知保险人，保险人有权要求增加保险费或者解除保险合同。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>被保险人未履行通知义务，因上述保险合同重要事项变更而导致保险事故发生的，保险人不承担赔偿责任。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第二十四条</b> 被保险人一旦知道或应当知道保险责任范围内的人身伤害或财产损失事故发生时，应该：
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（一）尽力采取必要、合理的措施，防止或减少损失，<b>否则，对因此扩大的损失，保险人不承担赔偿责任；</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（二）立即通知保险人，并书面说明事故发生的原因、经过和损失情况；<b>故意或者因重大过失未及时通知，致使保险事故的性质、原因、损失程度等难以确定的，保险人对无法确定的部分，不承担赔偿责任，但保险人通过其他途径已经及时知道或者应当及时知道保险事故发生的除外；</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（三）保护事故现场，允许并且协助保险人进行事故调查；<b>对于拒绝或者妨碍保险人进行事故调查导致无法确定事故原因或核实损失情况的，保险人对无法确定或核实的部分不承担赔偿责任。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第二十五条</b> 被保险人收到第三者的损害赔偿请求时，应立即通知保险人。<b>未经保险人书面同意，被保险人对第三者或其代理人作出的任何承诺、拒绝、出价、约定、付款或赔偿，保险人不受其约束。</b><b>对于被保险人自行承诺或支付的赔偿金额，保险人有权重新核定，不属于本保险责任范围或超出应赔偿金额的，保险人不承担赔偿责任。</b>在处理索赔过程中，保险人有权自行处理由其承担最终赔偿责任的任何索赔案件，被保险人有义务向保险人提供其所能提供的资料和协助。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第二十六条 </b>被保险人获悉可能发生诉讼、仲裁时，应立即以书面形式通知保险人；接到法院传票或其他法律文书后，应将其副本及时送交保险人。保险人有权以被保险人的名义处理有关诉讼或仲裁事宜，被保险人应提供有关文件，并给予必要的协助。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>被保险人未履行前款约定的索赔材料提供义务，导致保险人无法核实损失情况的，保险人对无法核实部分不承担赔偿责任。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第二十七条 </b>被保险人向保险人申请赔偿时，应提交以下资料、文件：
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（一）保险单或保险凭证；
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（二）索赔申请书、事故说明；
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（三）涉及事故的产品资料（实物照片、合格证、购买凭据、电子交易记录等）<span>;</span>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（四）操控记录或其他可说明事故经过的数据资料（如有）；
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（五）第三者的损失证明资料；
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（六）产品检测报告或行政机关出具的事故报告；
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（七）涉及诉讼的应提交相关法律文件；
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（八）其他被保险人所能提供的与确认保险事故的性质、原因、损失程度等有关的文件、资料。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>投保人、被保险人未履行前款约定的单证提供义务，导致保险人无法核实损失情况的，保险人对无法核实部分不承担赔偿责任。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第二十八条 </b>发生保险责任范围内的损失，应由有关责任方负责赔偿的，被保险人应行使或保留向该责任方请求赔偿的权利。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>保险事故发生后，保险人未履行赔偿义务之前，被保险人放弃对有关责任方请求赔偿的权利的，保险人不承担赔偿责任。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>保险人向被保险人赔偿保险金后，被保险人未经保险人同意放弃对有关责任方请求赔偿的权利的，该行为无效。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>在保险人向有关责任方行使代位请求赔偿权利时，被保险人应当向保险人提供必要的文件和其所知道的有关情况。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>由于被保险人的故意或重大过失致使保险人不能行使代位请求赔偿的权利的，保险人可以扣减或者要求返还相应的赔偿金额。</b>
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>赔偿处理</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>第二十九条 </b>保险人的赔偿以下列方式之一确定的被保险人的赔偿责任为基础：<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	（一）被保险人和向其提出损害赔偿请求的第三方协商达成并经保险人确认的调解协议或和解协议；<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	（二）仲裁机构裁决；<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	（三）人民法院判决；<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	（四）保险人认可的其它方式。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第三十条</b> <b>被保险人给第三者造成损害，被保险人未向该第三者赔偿的，保险人不得向被保险人赔偿保险金。<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>第</b><b>三十一</b><b>条</b> 发生保险责任范围内的损失，保险人按以下方式计算赔偿：<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>（一）对于每次事故造成的损失，保险人在每次事故</b><b>责任</b><b>限额内计算赔偿</b><b>。其中，对每人的赔偿金额不超过每次事故每人责任限额；对每人人身伤亡的赔偿金额不超过每次事故每人人身伤亡责任限额；对每人财产损失的赔偿金额不超过每次事故每人财产损失责任限额；</b><b></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>（二）在依据本条第（一）项计算的基础上，保险人在扣除每次事故免赔额</b><b>或依据每次事故免赔率计算的金额</b><b>后进行赔偿；<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>（三）在保险期间内，保险人对多次事故损失的累计赔偿金额不超过累计责任限额。</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>第三十二条 对每次事故法律费用的赔偿金额，保险人在本保险条款第三十一条计算的赔偿金额以外按应由被保险人支付的数额另行计算，但不超过每次事故责任限额的<span>30%</span>。<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第三十三条 </b>发生保险事故时，如果被保险人的损失能够从其他相同保障的保险项下也获得赔偿，则<b>本保险人按照本保险合同的责任限额与所有有关保险合同的责任限额或赔偿限额总和的比例承担赔偿责任。其他保险人应承担的赔偿金额，本保险人不负责垫付。</b><b></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	被保险人在请求赔偿时应当如实向保险人说明与本保险合同保险责任有关的其他保险合同的情况。<b>对未如实说明导致保险人多支付保险金的，保险人有权向被保险人追回多支付的部分。<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>第</b><b>三十四</b><b>条 </b>发生保险责任范围内的损失，应由有关责任方负责赔偿的，保险人自向被保险人赔偿保险金之日起，在赔偿金额范围内代位行使被保险人对有关责任方请求赔偿的权利，被保险人应当向保险人提供必要的文件和所知道的有关情况。<span></span>
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	被保险人已经从有关责任方取得赔偿的，<b>保险人赔偿保险金时，可以相应扣减被保险人已从有关责任方取得的赔偿金额。<span></span></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;">
+	<b>保险事故发生后，在保险人未赔偿保险金之前，被保险人放弃对有关责任方请求赔偿权利的，保险人不承担赔偿责任；</b>保险人向被保险人赔偿保险金后，被保险人未经保险人同意放弃对有关责任方请求赔偿权利的，该行为无效；<b>由于被保险人故意或者因重大过失致使保险人不能行使代位请求赔偿的权利的，保险人可以扣减或者要求返还相应的保险金。</b><b></b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第三十五条 </b>被保险人向保险人请求赔偿保险金的诉讼时效期间为二年，自其知道或者应当知道保险事故发生之日起计算。
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>争议处理</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第三十六条</b>&nbsp;因履行本保险合同发生的争议，由当事人协商解决。协商不成的，提交本保险合同载明的仲裁机构仲裁；本保险合同未载明仲裁机构或者发生争议后未达成仲裁协议的，可依法向中华人民共和国人民法院起诉。
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第三十七条 </b>本保险合同的争议处理适用中华人民共和国法律（不包括香港、澳门及台湾地区法律）。
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>其他事项</b>
+</p>
+<p class="MsoNormal" style="text-indent:21.1pt;vertical-align:baseline;">
+	<b>第三十八条 &nbsp;</b>保险责任开始前，投保人要求解除保险合同的，应当向保险人支付相当于保险费<span>5%</span>的退保手续费，保险人应当退还剩余部分保险费；保险人要求解除保险合同的，不得向投保人收取手续费并应退还已收取的保险费。
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	保险责任开始后，投保人要求解除保险合同的，自通知保险人之日起，保险合同解除，保险人按短期费率计收保险责任开始之日起至保险合同解除之日止期间的保险费，并退还剩余部分保险费。
+</p>
+<p class="MsoNormal" style="text-indent:21.0pt;vertical-align:baseline;">
+	保险人也可提前十五日向投保人发出解约通知书解除本保险合同，保险人按照保险责任开始之日起至保险合同解除之日止期间与保险期间的日比例计收保险费，并退还剩余部分保险费。
+</p>
+<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+	<b>附录：短期费率表</b>
+</p>
+<div align="center">
+	<table class="MsoNormalTable ke-zeroborder" border="0" cellspacing="0" cellpadding="0" style="">
+		<tbody>
+			<tr>
+				<td width="113" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">保险</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">期间</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">一</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">二</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">三</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">四</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">五</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">六</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">七</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">八</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">九</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">十</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">十</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">一</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="38" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">十</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">二</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">个</span><span style="font-family:宋体;"></span>
+					</p>
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">月</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="113" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">年费率的百分比</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">25</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">35</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">45</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">55</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">65</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">70</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">75</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">80</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">85</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">90</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="36" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">95</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+				<td width="38" style="border:solid windowtext 1.0pt;">
+					<p class="MsoNormal" align="center" style="text-align:center;vertical-align:baseline;">
+						<span style="font-family:宋体;">100</span><span style="font-family:宋体;"></span>
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<p class="MsoNormal" style="text-indent:21.0pt;">
+	注：保险期间不足一个月的部分按一个月计收。
+</p>
+     </div>
+  </div>
+  <a href="javascript:void(0)" class="btn_dialogText">我知道了</a>
+</div>
+<div class="dialogText dialogText1">
+  <strong class="title">投保须知</strong>
+  <div>
+     <div>
+         <p>1、本产品使用条款为《中国人寿财产保险股份有限公司无人驾驶飞行器责任保险条款》，由人寿财产保险股份有限公司承保。本公司在除港澳台、西藏外其他地区均设有分公司，本产品面向全国销售，但对于本公司未设立分公司的地区，您在非以上地区购买的，后续服务可能会受到影响。</p>
+         <p>2、本产品由中国人寿财产保险股份有限公司销售。</a>。</p>
+         <p>3、本产品每人最多投保五份，操作者年龄限制为18至65周岁。</p>
+         <p>4、被保险人为个人的，无人机的实际操作者为被保险人，非被保险人本人操作所发生的事故，不属于保险责任；被保险人为企业的，无人机的实际操作者可为企业员工，出险时须提供在出险前签订的劳动合同复印件。</p>
+         <p>5、本产品于客户投保并支付保险费后第三天二十四时内生效，保险期间为1年，遇节假日保单生效日期顺延。</p>
+         <p>6、本产品投保成功后，保险公司会发生投保确认短信到被保险人手机；如须变更、退保的，需要索要纸质保单、发票的，请拨打客服热线95519。</p>
+         <p>购买前请阅读保险条款，并特别就条款中有关责任免除和投保人、被保险人义务的内容进行详细了解，确认接受条款的全部内容。  </p>
+         <p>8、本保单第三者是指因保险飞行器发生意外事故遭受人身伤亡或财产直接损毁的法律主体。被保险人为法人时，第三者不包括遭受财产损失的该企业及遭受人身伤亡的该法人员工、该保险飞行器实际操作人或该实际操作人的直系亲属；被保险人为个人时，第三者不包括保险飞行器的实际操作人、被保险人及被保险人、实际操作人的直系亲属。</p>
+         <p>9、本产品仅承保被保险人在中国人民共和国境内（不包括港澳台地区）使用农用植保机 MG-1 时发生的保险事故。</p>
+         <p>10、理赔指引： 直接拨打24小时客服服务热线95519，由理赔专员全程协助完成理赔。</p>
+         <p>11、我公司建立有强大的防火墙和信息安全系统，针对投保人（被保险人或者受益人）的个人信息、投保交易信息和资金信息等给予充足的安全保障，我们严格遵守现行的关于个人信息、数据及隐私保护的法律法规，采取充分的技术手段和制度管理，保护您提供给我们的个人信息、数据和隐私不受到非法的泄露或披露给未获授权的第三方。</p>
+         <p>12、您在购买产品过程中，如发现本公司有关人员有违法、违规行为，或认为自身权益受到侵犯，请您保留相关证据并向本公司投诉，投诉电话：95519。</p>
+     </div>
+  </div>
+  <a href="javascript:void(0)" class="btn_dialogText">我知道了</a>
+</div>
+<div class="dialogText dialogText2">
+  <strong class="title">参考图片</strong>
+  <div>
+     <div style="padding-top:.5rem;">
+         <img src="/static/images/cankao.gif" style="width:100%;height:100%;"/>
+     </div>
+  </div>
+  <a href="javascript:void(0)" class="btn_dialogText">我知道了</a>
+</div>
+
+
+<script>
+//getCityList
+getCityList('#select-province',"#select-city-li",'#select-city',"#select-area-li",'#select-area')
+
+// 获取职业列表接口的html共有三级其中无业只有二级
+/*
+ *<li class="clearfix">
+ <div class="left">当前职业：</div>
+ <div class="right">
+     <select name="professionTree" id="professionTree"></select>
+     <i class="icon-down"></i>
+ </div>
+</li>
+<li class="clearfix" id="select-profession-li01" style="display:none">
+ <div class="left"></div>
+ <div class="right">
+     <select name="professionTree01" id="professionTree01"></select>
+     <i class="icon-down"></i>
+ </div>
+</li>
+<li class="clearfix" id="select-profession-li02" style="display:none">
+  <div class="left"></div>
+ <div class="right">
+     <select name="professionTree02" id="professionTree02"></select>
+     <i class="icon-down"></i>
+ </div>
+</li> 
+ */
+
+</script>
+<script charset="utf-8" type="text/javascript" src="/static/js/regCheck.js"></script>
+<script charset="utf-8" type="text/javascript" src="/static/js/buyConfirm-dajiang.js"></script>
+</body>
+</html>

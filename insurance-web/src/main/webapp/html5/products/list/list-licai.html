@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta charset="UTF-8">
+    <title>产品列表</title>
+    <link rel="stylesheet" href="/static/css/reset.css"/>
+    <link rel="stylesheet" href="/static/css/dropload.css"/>
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script charset="utf-8" type="text/javascript" src="/static/js/jquery-3.1.1.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/iscroll.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/static/js/dropload.min.js"></script>
+ 	<script charset="utf-8" type="text/javascript" src="/static/js/public.js"></script>
+ 	<script charset="utf-8" type="text/javascript" src="/static/js/list-caifu.js"></script>
+</head>
+<body>
+ <div class="wrap list">
+     <div class="header">
+         <div class="left back"></div>
+         <h2>财富宝</h2>
+     </div>
+     <div class="contener">
+       <div>
+          <!--  <div class="pro-list">
+               <p>宏康在线理财计划两全保险（投资连结型）</p>
+               <div class="pro-list-bottom">
+                   <i class="icon icon-tuijian"></i>
+                   <ul class="clearfix">
+                       <li>历史结算利率</li>
+                       <li>最低持有期</li>
+                       <li>起投金额</li>
+                   </ul>
+                   <ol class="clearfix">
+                       <li><span>6</span>%</li>
+                       <li><span>1</span>年</li>
+                       <li><span>1000</span>元</li>
+                   </ol>
+               </div>
+               <div class="img-shadow"></div>
+           </div> -->
+       </div>
+     </div>
+ </div>
+
+ <script charset="utf-8" type="text/javascript" src="/static/js/iscroll.js"></script>
+ <script charset="utf-8" type="text/javascript" >
+ $(function(){
+   back();
+   //showFooter	
+	getFooter();
+	showFooter(0); 
+ 
+    var height=$(window).height() - $('.header').outerHeight(true)-$('.footer').outerHeight(true);
+    $(".contener").css("height",height);
+    var myScroll = new IScroll('.contener', {
+        fadeScrollbars: true,
+        mouseWheel: true,
+        bounce: false,
+        click: true
+    });
+})
+ </script>
+</body>
+</html>
